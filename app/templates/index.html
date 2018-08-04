@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block action_menu %}
+    <a href="{{ url_for('add_news') }}" class="btn btn-outline-primary">{{ _('Add news') }}</a>
+{% endblock %}
+
+{% block app_content %}
+    {% if current_user.is_authenticated %}
+    <h1>Hi, {{ current_user.username }}!</h1>
+    {% endif %}
+    {% for new in news %}
+        <div class="container">
+            <div class="card">
+                <div class="card-header">{{ moment(new.timestamp).format('LL') }}</div>
+                <div class="card-body"><b>{{ new.body }}</b></div>
+            </div>
+        </div>
+        <br>
+    {% endfor %}
+{% endblock %}

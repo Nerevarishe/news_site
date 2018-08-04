@@ -1,0 +1,104 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}
+    {% if title %}{{ title }} - {{ _('News Site') }}{% else %}{{ _('Welcome to News Site') }}{% endif %}
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    {{ moment.include_moment() }}
+    {{ moment.lang(g.locale) }}
+{% endblock %}
+
+        <!-- Header -->
+{% block navbar %}
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+        <a class="navbar-brand" href="{{ url_for('index') }}">{{ _('News Site') }}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">{{ _('Home') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('schedule') }}">{{ _('Schedule') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('employees') }}">{{ _('Employees') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('about') }}">{{ _('About') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('science') }}">{{ _('Science Activity') }}</a>
+                </li>
+                {% if current_user.is_anonymous %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('login') }}">{{ _('Login') }}</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('logout') }}">{{ _('Logout') }}</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+
+
+<!-- Logged user menu -->
+    <div>
+        {% if current_user.is_authenticated %}
+        <div>
+            {% block action_menu %}
+            {% endblock %}
+            <hr>
+        </div>
+        {% else %}
+        {% endif %}
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </div>
+{% endblock %}
+{% block content %}
+        <!-- Page body -->
+        <div class="container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-info" role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        {# application content needs to be provided in the app_content block #}
+        {% block app_content %}{% endblock %}
+        </div>
+{% endblock %}
+        <!-- Footer
+        <div>
+            <hr>
+            <!-- Ссылки в соц сети -->
+            <!--<div>
+                <p>Мы в <a href="#">VK</a> <a href="#">Facebook</a></p>
+            </div>-->
+            <!-- Копирайт
+            <div>
+                <p>
+                    &#169 All Rights Reserved. 2018
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
+-->
