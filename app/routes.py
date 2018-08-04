@@ -13,26 +13,6 @@ def index():
     news = News.query.order_by(News.timestamp.desc()).all()
     return render_template('index.html', title=_('Home'), news=news)
 
-
-@app.route('/schedule')
-def schedule():
-    return render_template('schedule.html', title=_('Schedule'))
-
-
-@app.route('/employees')
-def employees():
-    return render_template('employees.html', title=_('Employees'))
-
-
-@app.route('/about')
-def about():
-    return render_template('about.html', title=_('About'))
-
-
-@app.route('/science')
-def science():
-    return render_template('science.html', title=_('Science'))
-
 @app.route('/add_news', methods=['GET', 'POST'])
 @login_required
 def add_news():
