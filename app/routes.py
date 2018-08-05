@@ -1,5 +1,6 @@
 from flask import render_template, flash, redirect, url_for
 from flask import g
+from flask import request
 from flask_login import current_user, login_user, logout_user, login_required
 from flask_babel import _, get_locale
 from app import app, db
@@ -7,11 +8,18 @@ from app.forms import LoginForm, NewsForm
 from app.models import User, News
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 @app.route('/index')
 def index():
-    news = News.query.order_by(News.timestamp.desc()).all()
-    return render_template('index.html', title=_('Home'), news=news)
+    page = request.args.get('page', 1, type=int)
+    news = News.query.order_by(News.timestamp.desc()).paginate(
+        page, app.config['POSTS_PER_PAGE'], False)
+    next_url = url_for('index', page=news.next_num) \
+        if news.has_next else None
+    prev_url = url_for('index', page=news.prev_num) \
+        if news.has_prev else None
+    return render_template('index.html', title=_('Home'), news=news.items,
+        next_url=next_url, prev_url=prev_url)
 
 @app.route('/add_news', methods=['GET', 'POST'])
 @login_required

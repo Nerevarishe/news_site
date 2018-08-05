@@ -7,8 +7,11 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
         'sqlite:///' + os.path.join(basedir, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    
     LANGUAGES = ['en', 'ru']
-
+    
+    POSTS_PER_PAGE = 5
+    
     #CKEditor settings
     CKEDITOR_SERVE_LOCAL = True
     CKEDITOR_AUTOGROW_ONSTARTUP = False

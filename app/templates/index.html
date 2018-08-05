@@ -11,10 +11,16 @@
     {% for new in news %}
         <div class="container">
             <div class="card">
-                <div class="card-header">{{ moment(new.timestamp).format('LL') }}</div>
-                <div class="card-body"><b>{{ new.body }}</b></div>
+                <div class="card-header">{{ moment(new.timestamp).format('LL') }} <a href="#">DEL</a></div>
+                <div class="card-body"><b>{{ new.body | safe }}</b></div>
             </div>
         </div>
         <br>
     {% endfor %}
+    {% if prev_url %}
+    <a href="{{ prev_url }}">Newer posts</a>
+    {% endif %}
+    {% if next_url %}
+    <a href="{{ next_url }}">Older posts</a>
+    {% endif %}
 {% endblock %}
