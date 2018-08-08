@@ -11,12 +11,14 @@
     {% for new in news %}
         <div class="container">
             <div class="card">
-                <div class="card-header">{{ moment(new.timestamp).format('LL') }}
-                {% if current_user.is_authenticated %}
-                <a href="/del_news/{{ new.id }}">DEL</a></div>
-                {% else %}
-                {% endif %}
-                <div class="card-body"><b>{{ new.body | safe }}</b></div>
+                <div class="card-header">
+                    {{ moment(new.timestamp).format('LL') }}
+                    {% if current_user.is_authenticated %}
+                    <a href="/del_news/{{ new.id }}">{{ _('Delete post') }}</a>
+                    {% else %}
+                    {% endif %}
+                </div>
+                <div class="card-body">{{ new.body | safe }}</div>
             </div>
         </div>
         <br>

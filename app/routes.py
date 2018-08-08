@@ -4,8 +4,8 @@ from flask import request
 from flask_login import current_user, login_user, logout_user, login_required
 from flask_babel import _, get_locale
 from app import app, db
-from app.forms import LoginForm, NewsForm
-from app.models import User, News
+from app.forms import LoginForm, NewsForm, FaqForm
+from app.models import User, News, FaqPost
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -31,7 +31,7 @@ def add_news():
         db.session.commit()
         news_id = news.id
         return redirect(url_for('index'))
-    return render_template('add_news.html', title='Add News', form=form)
+    return render_template('add_news.html', title=_('Add News'), form=form)
     
 @app.route('/del_news/<news_id>')
 @login_required
@@ -40,6 +40,31 @@ def del_news(news_id):
     db.session.delete(delete_news_id)
     db.session.commit()
     return redirect(url_for('index'))
+
+@app.route('/faq', methods=['GET', 'POST'])
+def faq():
+    faq_posts = FaqPost().query.order_by(FaqPost.timestamp.desc()).all()
+    return render_template('faq.html', title='FAQ', faq_posts=faq_posts)
+
+@app.route('/add_faq', methods=['GET', 'POST'])
+@login_required
+def add_faq():
+    form = FaqForm()
+    if form.validate_on_submit():
+        faq = FaqPost(title=form.title.data, body=form.body.data)
+        db.session.add(faq)
+        db.session.commit()
+        faq_id = faq.id
+        return redirect(url_for('faq'))
+    return render_template('add_faq.html', title=_('Add FAQ'), form=form)
+
+@app.route('/del_faq/<faq_id>')
+@login_required
+def del_faq(faq_id):
+    delete_faq_id = News.query.filter_by(id=faq_id).first()
+    db.session.delete(delete_faq_id)
+    db.session.commit()
+    return redirect(url_for('faq'))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

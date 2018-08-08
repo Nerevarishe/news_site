@@ -12,5 +12,10 @@ class LoginForm(FlaskForm):
     submit = SubmitField(_l('Sign In'))
 
 class NewsForm(FlaskForm):
-    news = CKEditorField(_l('Add news'))
+    news = CKEditorField(_l('Add news'), validators=[DataRequired()])
+    submit = SubmitField(_l('Submit'))
+    
+class FaqForm(FlaskForm):
+    title = StringField(_l('Title'), validators=[DataRequired()])
+    body = CKEditorField(_l('FAQ'))
     submit = SubmitField(_l('Submit'))
