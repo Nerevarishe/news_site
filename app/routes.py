@@ -19,7 +19,7 @@ def index():
     prev_url = url_for('index', page=news.prev_num) \
         if news.has_prev else None
     return render_template('index.html', title=_('Home'), news=news.items,
-        next_url=next_url, prev_url=prev_url)
+                            next_url=next_url, prev_url=prev_url)
 
 @app.route('/add_news', methods=['GET', 'POST'])
 @login_required
@@ -29,8 +29,17 @@ def add_news():
         news = News(body=form.news.data)
         db.session.add(news)
         db.session.commit()
+        news_id = news.id
         return redirect(url_for('index'))
     return render_template('add_news.html', title='Add News', form=form)
+    
+@app.route('/del_news/<news_id>')
+@login_required
+def del_news(news_id):
+    delete_news_id = News.query.filter_by(id=news_id).first()
+    db.session.delete(delete_news_id)
+    db.session.commit()
+    return redirect(url_for('index'))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
