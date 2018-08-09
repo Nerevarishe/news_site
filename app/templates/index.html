@@ -14,7 +14,7 @@
                 <div class="card-header">
                     {{ moment(new.timestamp).format('LL') }}
                     {% if current_user.is_authenticated %}
-                    <a href="/del_news/{{ new.id }}">{{ _('Delete post') }}</a>
+                    <a href="/del_news/{{ new.id }}" class="btn btn-outline-primary float-right">{{ _('Delete post') }}</a>
                     {% else %}
                     {% endif %}
                 </div>

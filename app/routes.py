@@ -61,10 +61,14 @@ def add_faq():
 @app.route('/del_faq/<faq_id>')
 @login_required
 def del_faq(faq_id):
-    delete_faq_id = News.query.filter_by(id=faq_id).first()
+    delete_faq_id = FaqPost.query.filter_by(id=faq_id).first()
     db.session.delete(delete_faq_id)
     db.session.commit()
     return redirect(url_for('faq'))
+    
+@app.route('/order', methods=['GET', 'POST'])
+def order():
+    return render_template('order.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

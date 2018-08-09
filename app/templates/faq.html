@@ -7,8 +7,8 @@
 <script>
     $(document).ready(function(){
         $(".card-body").hide();
-        $(".card-header").click(function(e){
-            e.preventDefault ();
+        $(".card-header").click(function(){
+            //e.preventDefault ();
             $(this).next().toggle();
         });
     });
@@ -20,13 +20,14 @@
 {% endblock %}
 
 {% block app_content %}
-        
         <div class="container">
             {% for faq_post in faq_posts %}
             <div class="card">
                 <div class="card-header">
                     {{ faq_post.title }}
-                    <a href="/del_faq/{{ faq_post.id }}">{{ _('Delete post') }}</a>
+                    {% if current_user.is_authenticated %}
+                    <a href="/del_faq/{{ faq_post.id }}" class="float-right">{{ _('Delete post') }}</a>
+                    {% endif %}
                 </div>
                 <div class="card-body">{{ faq_post.body | safe }}</div>
             </div>
