@@ -8,6 +8,9 @@ from app.forms import LoginForm, NewsForm, FaqForm
 from app.models import User, News, FaqPost
 
 
+#############################################
+# News section
+###
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index')
 def index():
@@ -41,6 +44,20 @@ def del_news(news_id):
     db.session.commit()
     return redirect(url_for('index'))
 
+@app.route('/edit_news/<news_id>', methods=['GET', 'POST'])
+@login_required
+def edit_news(news_id):
+    edit_news_id = News.query.filter_by(id=news_id).first()
+    form = NewsForm(news=edit_news_id.body)
+    if form.validate_on_submit():
+        edit_news_id.body = form.news.data
+        db.session.commit()
+        return redirect(url_for('index'))
+    return render_template('add_news.html', form=form)
+
+#############################################
+# FAQ section
+###
 @app.route('/faq', methods=['GET', 'POST'])
 def faq():
     faq_posts = FaqPost().query.order_by(FaqPost.timestamp.desc()).all()
@@ -66,10 +83,32 @@ def del_faq(faq_id):
     db.session.commit()
     return redirect(url_for('faq'))
     
+@app.route('/edit_faq/<faq_id>', methods=['GET', 'POST'])
+@login_required
+def edit_faq(faq_id):
+    edit_faq_id = FaqPost.query.filter_by(id=faq_id).first()
+    form = FaqForm(title=edit_faq_id.title, body=edit_faq_id.body)
+    if form.validate_on_submit():
+        edit_faq_id.title = form.title.data
+        edit_faq_id.body = body=form.body.data
+        db.session.commit()
+        return redirect(url_for('faq'))
+    return render_template('add_faq.html', form=form)
+
+#############################################
+# Orders section
+###    
 @app.route('/order', methods=['GET', 'POST'])
 def order():
     return render_template('order.html')
 
+@app.route('/order/law1175n201212')
+def law1175n201212():
+    return render_template('law1175n201212.html')
+
+#############################################
+# Login section
+###
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:

@@ -21,11 +21,6 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-    # def user_news(self):
-    #     return News.query.join(
-    #
-    #     )
-
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
