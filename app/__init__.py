@@ -23,6 +23,9 @@ moment = Moment(app)
 babel = Babel(app)
 ckeditor = CKEditor(app)
 
+from app.errors import bp as errors_bp
+app.register_blueprint(errors_bp)
+
 @babel.localeselector
 def get_locale():
     return request.accept_languages.best_match(app.config['LANGUAGES'])
@@ -43,4 +46,4 @@ if not app.debug:
     app.logger.setLevel(logging.INFO)
     app.logger.info('News site startup')
 
-from app import routes, models, errors
+from app import routes, models
