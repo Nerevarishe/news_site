@@ -1,8 +1,17 @@
 {% extends "base.html" %}
 
 {% block action_menu %}
+<a href="/order/add_law" class="btn btn-outline-primary">{{ _('Add law') }}</a>
 {% endblock %}
 
 {% block app_content %}
-    <a href="/order/law1175n201212">Приказ Минздрава России от 20.12.2012 N 1175н (ред. от 31.10.2017) &quot;Об утверждении порядка назначения и выписывания лекарственных препаратов, а также форм рецептурных бланков на лекарственные препараты, порядка оформления указанных бланков, их учета и хранения&quot;(Зарегистрировано в Минюсте России 25.06.2013 N 28883)</a>
+{% for law_post in law_posts %}
+<a href="/order/law/{{ law_post.id }}">{{ law_post.title | safe }}</a>
+<br>
+{% if current_user.is_authenticated %}
+<a href="/order/del_law/{{ law_post.id }}" class="btn btn-outline-primary float-right">{{ _('Delete post') }}</a>
+<a href="/order/edit_law/{{ law_post.id }}" class="btn btn-outline-primary float-right">{{ _('Edit post') }}</a>
+<br><br><hr>
+{% endif %}
+{% endfor %}
 {% endblock %}

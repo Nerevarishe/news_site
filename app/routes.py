@@ -4,8 +4,8 @@ from flask import request
 from flask_login import current_user, login_user, logout_user, login_required
 from flask_babel import _, get_locale
 from app import app, db
-from app.forms import LoginForm, NewsForm, FaqForm
-from app.models import User, News, FaqPost
+from app.forms import LoginForm, NewsForm, FaqForm, LawForm
+from app.models import User, News, FaqPost, LawPost
 
 
 #############################################
@@ -61,9 +61,9 @@ def edit_news(news_id):
 @app.route('/faq', methods=['GET', 'POST'])
 def faq():
     faq_posts = FaqPost().query.order_by(FaqPost.timestamp.desc()).all()
-    return render_template('faq.html', title='FAQ', faq_posts=faq_posts)
+    return render_template('faq.html', title=_('FAQ'), faq_posts=faq_posts)
 
-@app.route('/add_faq', methods=['GET', 'POST'])
+@app.route('/faq/add_faq', methods=['GET', 'POST'])
 @login_required
 def add_faq():
     form = FaqForm()
@@ -75,7 +75,7 @@ def add_faq():
         return redirect(url_for('faq'))
     return render_template('add_faq.html', title=_('Add FAQ'), form=form)
 
-@app.route('/del_faq/<faq_id>')
+@app.route('/faq/del_faq/<faq_id>')
 @login_required
 def del_faq(faq_id):
     delete_faq_id = FaqPost.query.filter_by(id=faq_id).first()
@@ -83,7 +83,7 @@ def del_faq(faq_id):
     db.session.commit()
     return redirect(url_for('faq'))
     
-@app.route('/edit_faq/<faq_id>', methods=['GET', 'POST'])
+@app.route('/faq/edit_faq/<faq_id>', methods=['GET', 'POST'])
 @login_required
 def edit_faq(faq_id):
     edit_faq_id = FaqPost.query.filter_by(id=faq_id).first()
@@ -100,11 +100,45 @@ def edit_faq(faq_id):
 ###    
 @app.route('/order', methods=['GET', 'POST'])
 def order():
-    return render_template('order.html')
+    law_posts = LawPost().query.order_by(LawPost.timestamp.desc()).all()
+    return render_template('order.html', title=_('Orders'), law_posts=law_posts)
 
-@app.route('/order/law1175n201212')
-def law1175n201212():
-    return render_template('law1175n201212.html')
+@app.route('/order/law/<law_id>')
+def law(law_id):
+    law = LawPost().query.filter_by(id=law_id).first()
+    return render_template('law.html', title=law.title, law=law)
+
+@app.route('/order/add_law', methods=['GET', 'POST'])
+@login_required
+def add_law():
+    form = LawForm()
+    if form.validate_on_submit():
+        law = LawPost(title=form.title.data, body=form.body.data)
+        db.session.add(law)
+        db.session.commit()
+        law_id = law.id
+        return redirect(url_for('order'))
+    return render_template('add_law.html', title=_('Add law'), form=form)
+
+@app.route('/order/del_law/<law_id>')
+@login_required
+def del_law(law_id):
+    delete_law_id = LawPost.query.filter_by(id=law_id).first()
+    db.session.delete(delete_law_id)
+    db.session.commit()
+    return redirect(url_for('order'))
+    
+@app.route('/order/edit_law/<law_id>', methods=['GET', 'POST'])
+@login_required
+def edit_law(law_id):
+    edit_law_id = LawPost.query.filter_by(id=law_id).first()
+    form = LawForm(title=edit_law_id.title, body=edit_law_id.body)
+    if form.validate_on_submit():
+        edit_law_id.title = form.title.data
+        edit_law_id.body = body=form.body.data
+        db.session.commit()
+        return redirect(url_for('order'))
+    return render_template('add_law.html', form=form)
 
 #############################################
 # Login section

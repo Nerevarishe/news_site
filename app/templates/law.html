@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block head %}
+{{ super() }}
+
+<style type="text/css">
+.s0	{font-family: "Times New Roman", serif;		 font-style: normal; font-weight: normal;	font-size: 12pt;	}
+.s0B	{font-family: "Times New Roman", serif;		 font-style: normal; font-weight: bold;		font-size: 12pt;	}
+.s0C	{font-family: "Times New Roman", serif;		 font-style: italic; font-weight: normal;	font-size: 12pt;	}
+.s0BC	{font-family: "Times New Roman", serif;		 font-style: italic; font-weight: bold;		font-size: 12pt;	}
+.s1	{font-family: "Courier New", monospace;	 font-style: normal; font-weight: normal;	font-size: 10pt;	white-space: pre;}
+.s1B	{font-family: "Courier New", monospace;	 font-style: normal; font-weight: bold;		font-size: 10pt;	white-space: pre;}
+.s1C	{font-family: "Courier New", monospace;	 font-style: italic; font-weight: normal;	font-size: 10pt;	white-space: pre;}
+.s1BC	{font-family: "Courier New", monospace;	 font-style: italic; font-weight: bold;		font-size: 10pt;	white-space: pre;}
+.s2	{font-family: "Arial", serif;		 font-style: normal; font-weight: normal;	font-size: 12pt;	}
+.s2B	{font-family: "Arial", serif;		 font-style: normal; font-weight: bold;		font-size: 12pt;	}
+.s2C	{font-family: "Arial", serif;		 font-style: italic; font-weight: normal;	font-size: 12pt;	}
+.s2BC	{font-family: "Arial", serif;		 font-style: italic; font-weight: bold;		font-size: 12pt;	}
+.s3	{font-family: "Courier New", monospace;	 font-style: normal; font-weight: normal;	font-size: 10pt;	white-space: pre;}
+.s3B	{font-family: "Courier New", monospace;	 font-style: normal; font-weight: bold;		font-size: 10pt;	white-space: pre;}
+.s3C	{font-family: "Courier New", monospace;	 font-style: italic; font-weight: normal;	font-size: 10pt;	white-space: pre;}
+.s3BC	{font-family: "Courier New", monospace;	 font-style: italic; font-weight: bold;		font-size: 10pt;	white-space: pre;}
+.s4	{font-family: "Tahoma", serif;		 font-style: normal; font-weight: normal;	font-size: 9pt;	}
+.s4B	{font-family: "Tahoma", serif;		 font-style: normal; font-weight: bold;		font-size: 9pt;	}
+.s4C	{font-family: "Tahoma", serif;		 font-style: italic; font-weight: normal;	font-size: 9pt;	}
+.s4BC	{font-family: "Tahoma", serif;		 font-style: italic; font-weight: bold;		font-size: 9pt;	}
+.s5	{font-family: "Tahoma", serif;		 font-style: normal; font-weight: normal;	font-size: 10pt;	}
+.s5B	{font-family: "Tahoma", serif;		 font-style: normal; font-weight: bold;		font-size: 10pt;	}
+.s5C	{font-family: "Tahoma", serif;		 font-style: italic; font-weight: normal;	font-size: 10pt;	}
+.s5BC	{font-family: "Tahoma", serif;		 font-style: italic; font-weight: bold;		font-size: 10pt;	}
+.s6	{font-family: "Times New Roman", serif;		 font-style: normal; font-weight: normal;	font-size: 12pt;	}
+.s6B	{font-family: "Times New Roman", serif;		 font-style: normal; font-weight: bold;		font-size: 12pt;	}
+.s6C	{font-family: "Times New Roman", serif;		 font-style: italic; font-weight: normal;	font-size: 12pt;	}
+.s6BC	{font-family: "Times New Roman", serif;		 font-style: italic; font-weight: bold;		font-size: 12pt;	}
+.s7	{font-family: "Times New Roman", serif;		 font-style: normal; font-weight: normal;	font-size: 12pt;	}
+.s7B	{font-family: "Times New Roman", serif;		 font-style: normal; font-weight: bold;		font-size: 12pt;	}
+.s7C	{font-family: "Times New Roman", serif;		 font-style: italic; font-weight: normal;	font-size: 12pt;	}
+.s7BC	{font-family: "Times New Roman", serif;		 font-style: italic; font-weight: bold;		font-size: 12pt;	}
+.s7	{font-family: "Times New Roman", serif;		 font-style: normal; font-weight: normal;	font-size: 12pt;	}
+.s7B	{font-family: "Times New Roman", serif;		 font-style: normal; font-weight: bold;		font-size: 12pt;	}
+.s7C	{font-family: "Times New Roman", serif;		 font-style: italic; font-weight: normal;	font-size: 12pt;	}
+.s7BC	{font-family: "Times New Roman", serif;		 font-style: italic; font-weight: bold;		font-size: 12pt;	}
+.aC{text-align: center;}
+.aR{text-align: right;}
+.aJ{text-align: justify;}
+.aL{text-align: left;}
+.bT{padding: 8pt 0pt 0pt 0pt ; }
+.bH{padding: 6pt 0pt 6pt 0pt ; }
+.bG{}
+.bC{}
+.bB{padding: 5pt 0pt 5pt 0pt ; }
+.bD{padding: 5pt 2pt 5pt 2pt ; }
+.iF	{text-indent: 48pt; }
+.rC	{ text-decoration: none; }
+.lS	{ height: 2pt; }
+
+.hC	{ border-left: solid 1pt; border-right: solid 1pt; border-top: solid 1pt; border-bottom: solid 1pt; }
+</style>
+
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  /*border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+  
+}
+
+#myBtn:hover {
+  background-color: #555;
+}*/
+</style>
+{% endblock %}
+
+{% block action_menu %}
+
+{% endblock %}
+
+{% block app_content %}
+{{ law.body | safe }}
+
+<button class="btn btn-outline-primary" onclick="topFunction()" id="myBtn" title="{{ _('Go to top') }}">{{ _('Top') }}</button>
+
+<script>
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+    } else {
+        document.getElementById("myBtn").style.display = "none";
+    }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+</script>
+{% endblock %}

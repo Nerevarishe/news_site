@@ -19,3 +19,8 @@ class FaqForm(FlaskForm):
     title = StringField(_l('Title'), validators=[DataRequired()])
     body = CKEditorField(_l('FAQ'), validators=[DataRequired()])
     submit = SubmitField(_l('Submit'))
+    
+class LawForm(FlaskForm):
+    title = StringField(_l('Title'), validators=[DataRequired()])
+    body = CKEditorField(_l('FAQ'), validators=[DataRequired()])
+    submit = SubmitField(_l('Submit'))
