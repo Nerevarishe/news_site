@@ -26,8 +26,8 @@
                 <div class="card-header">
                     {{ faq_post.title }}
                     {% if current_user.is_authenticated %}
-                    <a href="/del_faq/{{ faq_post.id }}" class="btn btn-outline-primary float-right">{{ _('Delete post') }}</a>
-                    <a href="/edit_faq/{{ faq_post.id }}" class="btn btn-outline-primary float-right">{{ _('Edit post') }}</a>
+                    <a href="{{ url_for('faq.del_faq', faq_id=faq_post.id) }}" class="btn btn-outline-primary float-right">{{ _('Delete post') }}</a>
+                    <a href="{{ url_for('faq.edit_faq', faq_id=faq_post.id) }}" class="btn btn-outline-primary float-right">{{ _('Edit post') }}</a>
                     {% endif %}
                 </div>
                 <div class="card-body">{{ faq_post.body | safe }}</div>
