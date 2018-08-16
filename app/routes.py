@@ -4,7 +4,7 @@ from flask import request
 from flask_login import login_required
 from flask_babel import _, get_locale
 from app import app, db
-from app.forms import NewsForm, FaqForm, LawForm
+from app.forms import NewsForm, LawForm
 from app.models import News, FaqPost, LawPost
 
 
@@ -54,46 +54,6 @@ def edit_news(news_id):
         db.session.commit()
         return redirect(url_for('index'))
     return render_template('add_news.html', form=form)
-
-#############################################
-# FAQ section
-###
-@app.route('/faq', methods=['GET', 'POST'])
-def faq():
-    faq_posts = FaqPost().query.order_by(FaqPost.timestamp.desc()).all()
-    return render_template('faq.html', title=_('FAQ'), faq_posts=faq_posts)
-
-@app.route('/faq/add_faq', methods=['GET', 'POST'])
-@login_required
-def add_faq():
-    form = FaqForm()
-    if form.validate_on_submit():
-        faq = FaqPost(title=form.title.data, body=form.body.data)
-        db.session.add(faq)
-        db.session.commit()
-        faq_id = faq.id
-        return redirect(url_for('faq'))
-    return render_template('add_faq.html', title=_('Add FAQ'), form=form)
-
-@app.route('/faq/del_faq/<faq_id>')
-@login_required
-def del_faq(faq_id):
-    delete_faq_id = FaqPost.query.filter_by(id=faq_id).first()
-    db.session.delete(delete_faq_id)
-    db.session.commit()
-    return redirect(url_for('faq'))
-    
-@app.route('/faq/edit_faq/<faq_id>', methods=['GET', 'POST'])
-@login_required
-def edit_faq(faq_id):
-    edit_faq_id = FaqPost.query.filter_by(id=faq_id).first()
-    form = FaqForm(title=edit_faq_id.title, body=edit_faq_id.body)
-    if form.validate_on_submit():
-        edit_faq_id.title = form.title.data
-        edit_faq_id.body = body=form.body.data
-        db.session.commit()
-        return redirect(url_for('faq'))
-    return render_template('add_faq.html', form=form)
 
 #############################################
 # Orders section
