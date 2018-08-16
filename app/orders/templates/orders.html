@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block action_menu %}
+<a href="{{ url_for('orders.add_law') }}" class="btn btn-outline-primary">{{ _('Add law') }}</a>
+{% endblock %}
+
+{% block app_content %}
+{% for law_post in law_posts %}
+<a href="{{ url_for('orders.law', law_id=law_post.id) }}">{{ law_post.title | safe }}</a>
+<br>
+{% if current_user.is_authenticated %}
+<a href="{{ url_for('orders.del_law', law_id=law_post.id) }}" class="btn btn-outline-primary float-right">{{ _('Delete post') }}</a>
+<a href="{{ url_for('orders.edit_law', law_id=law_post.id) }}" class="btn btn-outline-primary float-right">{{ _('Edit post') }}</a>
+<br><br><hr>
+{% endif %}
+{% endfor %}
+{% endblock %}

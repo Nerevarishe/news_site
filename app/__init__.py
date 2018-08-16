@@ -32,6 +32,9 @@ app.register_blueprint(auth_bp, url_prefix='/auth')
 from app.faq import bp as faq_bp
 app.register_blueprint(faq_bp, url_prefix='/faq')
 
+from app.orders import bp as orders_bp
+app.register_blueprint(orders_bp, url_prefix='/orders')
+
 @babel.localeselector
 def get_locale():
     return request.accept_languages.best_match(app.config['LANGUAGES'])
