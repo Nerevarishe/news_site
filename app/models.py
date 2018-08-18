@@ -50,10 +50,3 @@ class LawPost(db.Model):
     
     def __repr__(self):
         return 'Title: {}, Post: {}'.format(self.title, self.body)
-        
-class ExpdateTable(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    drug_name = db.Column(db.String)
-    exp_date = db.Column(db.DateTime, index=True)
-    amount = db.Column(db.Integer)
-    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)

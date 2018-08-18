@@ -35,9 +35,6 @@ app.register_blueprint(faq_bp, url_prefix='/faq')
 from app.orders import bp as orders_bp
 app.register_blueprint(orders_bp, url_prefix='/orders')
 
-from app.expdate import bp as expdate_bp
-app.register_blueprint(expdate_bp, url_prefix='/expdate')
-
 @babel.localeselector
 def get_locale():
     return request.accept_languages.best_match(app.config['LANGUAGES'])
