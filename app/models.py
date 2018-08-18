@@ -21,11 +21,6 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-    # def user_news(self):
-    #     return News.query.join(
-    #
-    #     )
-
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
@@ -37,3 +32,28 @@ class News(db.Model):
 
     def __repr__(self):
         return 'Post: {}'.format(self.body)
+
+class FaqPost(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String)
+    body = db.Column(db.String)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    
+    def __repr__(self):
+        return 'Title: {}, Post: {}'.format(self.title, self.body)
+        
+class LawPost(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String)
+    body = db.Column(db.String)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    
+    def __repr__(self):
+        return 'Title: {}, Post: {}'.format(self.title, self.body)
+        
+class ExpdateTable(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    drug_name = db.Column(db.String)
+    exp_date = db.Column(db.DateTime, index=True)
+    amount = db.Column(db.Integer)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)

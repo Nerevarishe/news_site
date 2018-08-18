@@ -23,6 +23,21 @@ moment = Moment(app)
 babel = Babel(app)
 ckeditor = CKEditor(app)
 
+from app.errors import bp as errors_bp
+app.register_blueprint(errors_bp)
+
+from app.auth import bp as auth_bp
+app.register_blueprint(auth_bp, url_prefix='/auth')
+
+from app.faq import bp as faq_bp
+app.register_blueprint(faq_bp, url_prefix='/faq')
+
+from app.orders import bp as orders_bp
+app.register_blueprint(orders_bp, url_prefix='/orders')
+
+from app.expdate import bp as expdate_bp
+app.register_blueprint(expdate_bp, url_prefix='/expdate')
+
 @babel.localeselector
 def get_locale():
     return request.accept_languages.best_match(app.config['LANGUAGES'])
@@ -43,4 +58,4 @@ if not app.debug:
     app.logger.setLevel(logging.INFO)
     app.logger.info('News site startup')
 
-from app import routes, models, errors
+from app import routes, models

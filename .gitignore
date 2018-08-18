@@ -1,3 +1,6 @@
+# Logs dir
+logs/
+
 # SQLlite DB
 *.db
 *.db.bak
