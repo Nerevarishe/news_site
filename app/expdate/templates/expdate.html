@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block action_menu %}
+<a href="{{ url_for('expdate.add_exp_date') }}" class="">{{ _('Add Item') }}</a>
+{% endblock %}
+
+{% block app_content %}
+    <table class="table">
+        <tr>
+            <th>{{ _('Drug name') }}<a href="#">S</a></th>
+            <th>{{ _('Exp.Date') }}<a href="#">S</a></th>
+            <th>{{ _('Amount') }}<a href="#">S</a></th>
+            <th>{{ _('Operations') }}</th>
+        </tr>
+        {% for row in expdate_table %}
+        <tr>
+            <td>{{ row.drug_name }}</td>
+            <td>{{ row.exp_date }}</td>
+            <td>{{ row.amount }}</td>
+            <td><a href="#">+</a><a href="#">-</a><a href="#">DEL</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
