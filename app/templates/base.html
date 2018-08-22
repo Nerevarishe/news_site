@@ -28,6 +28,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('orders.orders') }}">{{ _('Orders') }}</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('expdate.expdate') }}">{{ _('Exp. Dates') }}</a>
+                </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 {% if current_user.is_anonymous %}

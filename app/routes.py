@@ -8,6 +8,9 @@ from app.forms import NewsForm
 from app.models import News
 
 
+@app.route('/test')
+def test():
+    return render_template('test.html')
 #############################################
 # News section
 ###
