@@ -24,7 +24,7 @@
     <table class="table">
         <tr>
             <th>{{ _('Drug name') }} <a href="#">S</a></th>
-            <th>{{ _('Exp.Date') }} <a href="#">S</a></th>
+            <th>{{ _('Exp. Date') }} <a href="#">S</a></th>
             <th>{{ _('Amount') }} <a href="#">S</a></th>
             <th>{{ _('Operations') }}</th>
         </tr>
@@ -34,10 +34,10 @@
             <td>{{ row.exp_date.strftime("%m/%Y") }}</td>
             <td class="amount">{{ row.amount }}</td>
             <td>
-                <a href="{{ url_for('expdate.inc_amount', row_id=row.id) }}" class="btn btn-outline-primary">+</a>
-                <a href="{{ url_for('expdate.dec_amount', row_id=row.id) }}" class="btn btn-outline-primary">-</a>
+                <a href="{{ url_for('expdate.inc_amount', row_id=row.id) }}" class="btn btn-outline-primary" title="{{ _('Increase amount') }}">+</a>
+                <a href="{{ url_for('expdate.dec_amount', row_id=row.id) }}" class="btn btn-outline-primary" title="{{ _('Decrease amount') }}">-</a>
                 {% if current_user.is_authenticated %}
-                <a href="{{ url_for('expdate.del_exp_date', row_id=row.id) }} " class="btn btn-outline-primary">X</a>
+                <a href="{{ url_for('expdate.del_exp_date', row_id=row.id) }} " class="btn btn-outline-primary" title="{{ _('Delete row') }}">X</a>
                 {% endif %}
             </td>
         </tr>

@@ -12,7 +12,7 @@ from app.expdate import bp
 def expdate():
     expdate_table = ExpdateTable.query.order_by(ExpdateTable.exp_date.asc()).all()
     form = ExpdateAddItemForm()
-    return render_template('expdate.html', title=_('expdate'), expdate_table=expdate_table)
+    return render_template('expdate.html', title=_('Exp. Dates'), expdate_table=expdate_table)
 
 @bp.route('/add_exp_date', methods=['GET', 'POST'])
 @login_required
@@ -23,7 +23,7 @@ def add_exp_date():
         db.session.add(exp_date_item)
         db.session.commit()
         return redirect(url_for('expdate.expdate'))
-    return render_template('add_exp_date.html', title=_('expdate'), form=form)
+    return render_template('add_exp_date.html', title=_('Add Exp. Date'), form=form)
 
 @bp.route('/del_exp_date/<row_id>')
 @login_required
