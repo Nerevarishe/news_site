@@ -1,6 +1,9 @@
 # Logs dir
 logs/
 
+# Files in uploads dir
+uploads/*
+
 # SQLlite DB
 *.db
 *.db.bak

@@ -8,12 +8,13 @@ class Config(object):
         'sqlite:///' + os.path.join(basedir, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
+    UPLOADED_PATH = os.path.join(basedir, 'uploads')
+    
     LANGUAGES = ['en', 'ru']
     
     POSTS_PER_PAGE = 5
     
     #CKEditor settings
     CKEDITOR_SERVE_LOCAL = True
-    CKEDITOR_AUTOGROW_ONSTARTUP = False
-    CKEDITOR_FULLPAGE = True
+    CKEDITOR_FILE_UPLOADER = 'upload'
     CKEDITOR_ALLOWEDCONTENT = True

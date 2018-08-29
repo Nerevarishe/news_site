@@ -2,7 +2,6 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 {% block head %}
     {{ super() }}
-    {{ ckeditor.load(pkg_type='full') }}
 {% endblock %}
 
 {% block app_content %}
@@ -12,4 +11,6 @@
             {{ wtf.quick_form(form) }}
         </div>
     </div>
+{{ ckeditor.load(pkg_type='full') }}
+{{ ckeditor.config(name='news') }}
 {% endblock %}

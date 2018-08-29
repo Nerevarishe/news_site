@@ -1,8 +1,10 @@
-from flask import render_template, redirect, url_for
+import os
+from flask import render_template, redirect, url_for, send_from_directory
 from flask import g
 from flask import request
 from flask_login import login_required
 from flask_babel import _, get_locale
+from flask_ckeditor import upload_fail, upload_success
 from app import app, db
 from app.forms import NewsForm
 from app.models import News
@@ -38,7 +40,23 @@ def add_news():
         news_id = news.id
         return redirect(url_for('index'))
     return render_template('add_news.html', title=_('Add News'), form=form)
-    
+
+@app.route('/files/<filename>')
+def uploaded_files(filename):
+    path = app.config['UPLOADED_PATH']
+    return send_from_directory(path, filename)
+
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    f = request.files.get('upload')
+    extension = f.filename.split('.')[1].lower()
+    if extension not in ['jpg', 'gif', 'png', 'jpeg']:
+        return upload_fail(message='Image only!')
+    f.save(os.path.join(app.config['UPLOADED_PATH'], f.filename))
+    url = url_for('uploaded_files', filename=f.filename)
+    return upload_success(url=url)
+
 @app.route('/del_news/<news_id>')
 @login_required
 def del_news(news_id):
