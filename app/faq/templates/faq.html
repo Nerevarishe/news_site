@@ -3,21 +3,20 @@
 
 {% block scripts %}
 {{ super() }}
-<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 <script>
     $(document).ready(function(){
         $(".card-body").hide();
         $(".card-header").click(function(){
-            //e.preventDefault ();
             $(this).next().toggle();
         });
     });
 </script>
+<script src="{{ url_for('static', filename='js/bootstrap-confirm-delete.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap-confirm-delete-conf.js') }}"></script>
 {% endblock %}
 
 {% block action_menu %}
 <a href="{{ url_for('faq.add_faq') }}" class="btn btn-outline-primary">{{ _('Add FAQ') }}</a>
-<span><b>Удаляет пункты сразу и без подтверждения!</b></span>
 {% endblock %}
 
 {% block app_content %}
