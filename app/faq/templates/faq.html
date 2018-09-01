@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 {% import 'bootstrap/wtf.html' as wtf %}
 
+{% block head %}
+{{ super() }}
+<link rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+      crossorigin="anonymous">
+{% endblock %}
+
 {% block scripts %}
 {{ super() }}
 <script>
@@ -26,8 +34,16 @@
                 <div class="card-header">
                     {{ faq_post.title }}
                     {% if current_user.is_authenticated %}
-                    <a href="{{ url_for('faq.del_faq', faq_id=faq_post.id) }}" class="btn btn-outline-primary float-right delete">{{ _('Delete post') }}</a>
-                    <a href="{{ url_for('faq.edit_faq', faq_id=faq_post.id) }}" class="btn btn-outline-primary float-right">{{ _('Edit post') }}</a>
+                    <a href="{{ url_for('faq.del_faq', faq_id=faq_post.id) }}"
+                       class="btn btn-outline-primary float-right delete"
+                       title="{{ _('Delete post') }}">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                    <a href="{{ url_for('faq.edit_faq', faq_id=faq_post.id) }}"
+                       class="btn btn-outline-primary float-right"
+                       title="{{ _('Edit post') }}">
+                        <i class="fas fa-edit"></i>
+                    </a>
                     {% endif %}
                 </div>
                 <div class="card-body">{{ faq_post.body | safe }}</div>

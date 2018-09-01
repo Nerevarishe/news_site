@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 {% import 'bootstrap/wtf.html' as wtf %}
 
+{% block head %}
+{{ super() }}
+<link rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+      crossorigin="anonymous">
+{% endblock %}
+
 {% block scripts %}
 {{ super() }}
 <script>
@@ -36,10 +44,22 @@
             <td>{{ row.exp_date.strftime("%m/%Y") }}</td>
             <td class="amount">{{ row.amount }}</td>
             <td>
-                <a href="{{ url_for('expdate.inc_amount', row_id=row.id) }}" class="btn btn-outline-primary" title="{{ _('Increase amount') }}">+</a>
-                <a href="{{ url_for('expdate.dec_amount', row_id=row.id) }}" class="btn btn-outline-primary" title="{{ _('Decrease amount') }}">-</a>
+                <a href="{{ url_for('expdate.inc_amount', row_id=row.id) }}"
+                   class="btn btn-outline-primary"
+                   title="{{ _('Increase amount') }}">
+                    <i class="fas fa-plus"></i>
+                </a>
+                <a href="{{ url_for('expdate.dec_amount', row_id=row.id) }}"
+                   class="btn btn-outline-primary"
+                   title="{{ _('Decrease amount') }}">
+                    <i class="fas fa-minus"></i>
+                </a>
                 {% if current_user.is_authenticated %}
-                <a href="{{ url_for('expdate.del_exp_date', row_id=row.id) }} " class="btn btn-outline-primary delete" title="{{ _('Delete row') }}">X</a>
+                <a href="{{ url_for('expdate.del_exp_date', row_id=row.id) }}"
+                   class="btn btn-outline-primary delete"
+                   title="{{ _('Delete row') }}">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
                 {% endif %}
             </td>
         </tr>

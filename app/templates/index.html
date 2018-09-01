@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" 
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+      crossorigin="anonymous">
+{% endblock %}
+
 {% block scripts %}
     {{ super() }}
 <script src="{{ url_for('static', filename='js/bootstrap-confirm-delete.js') }}"></script>
@@ -20,8 +28,8 @@
                 <div class="card-header">
                     {{ moment(new.timestamp).format('LLL') }}
                     {% if current_user.is_authenticated %}
-                    <a href="/del_news/{{ new.id }}" class="btn btn-outline-primary float-right delete" alt="{{ _('Delete post') }}"><span class="glyphicon glyphicon-trash"></span></a>
-                    <a href="/edit_news/{{ new.id }}" class="btn btn-outline-primary float-right">{{ _('Edit post') }}</a>
+                    <a href="/del_news/{{ new.id }}" class="btn btn-outline-primary float-right delete" title="{{ _('Delete post') }}"><i class="fas fa-trash-alt"></i></a>
+                    <a href="/edit_news/{{ new.id }}" class="btn btn-outline-primary float-right" title="{{ _('Edit post') }}"><i class="fas fa-edit"></i></a>
                     {% endif %}
                 </div>
                 <div class="card-body">{{ new.body | safe }}</div>

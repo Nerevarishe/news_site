@@ -1,5 +1,14 @@
 {% extends "base.html" %}
 
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" 
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" 
+      crossorigin="anonymous">
+</link>
+{% endblock %}
+
 {% block scripts %}
 {{ super() }}
 <script src="{{ url_for('static', filename='js/bootstrap-confirm-delete.js') }}"></script>
@@ -15,8 +24,16 @@
 <a href="{{ url_for('orders.law', law_id=law_post.id) }}">{{ law_post.title | safe }}</a>
 <br>
 {% if current_user.is_authenticated %}
-<a href="{{ url_for('orders.del_law', law_id=law_post.id) }}" class="btn btn-outline-primary float-right delete">{{ _('Delete post') }}</a>
-<a href="{{ url_for('orders.edit_law', law_id=law_post.id) }}" class="btn btn-outline-primary float-right">{{ _('Edit post') }}</a>
+<a href="{{ url_for('orders.del_law', law_id=law_post.id) }}" 
+   class="btn btn-outline-primary float-right delete" 
+   title="{{ _('Delete post') }}">
+    <i class="fas fa-trash-alt"></i>
+</a>
+<a href="{{ url_for('orders.edit_law', law_id=law_post.id) }}"
+   class="btn btn-outline-primary float-right"
+   title="{{ _('Edit post') }}">
+    <i class="fas fa-edit"></i>
+</a>
 {% endif %}
 <br><hr>
 {% endfor %}
