@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% import 'bootstrap/wtf.html' as wtf %}
 
-{% block head %}
+{% block scripts %}
 {{ super() }}
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 <script>
@@ -17,6 +17,7 @@
 
 {% block action_menu %}
 <a href="{{ url_for('faq.add_faq') }}" class="btn btn-outline-primary">{{ _('Add FAQ') }}</a>
+<span><b>Удаляет пункты сразу и без подтверждения!</b></span>
 {% endblock %}
 
 {% block app_content %}
@@ -26,7 +27,7 @@
                 <div class="card-header">
                     {{ faq_post.title }}
                     {% if current_user.is_authenticated %}
-                    <a href="{{ url_for('faq.del_faq', faq_id=faq_post.id) }}" class="btn btn-outline-primary float-right">{{ _('Delete post') }}</a>
+                    <a href="{{ url_for('faq.del_faq', faq_id=faq_post.id) }}" class="btn btn-outline-primary float-right delete">{{ _('Delete post') }}</a>
                     <a href="{{ url_for('faq.edit_faq', faq_id=faq_post.id) }}" class="btn btn-outline-primary float-right">{{ _('Edit post') }}</a>
                     {% endif %}
                 </div>
