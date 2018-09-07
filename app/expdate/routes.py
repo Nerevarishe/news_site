@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, json
 from flask_login import login_required
 from flask_babel import _
 from app import db
@@ -33,17 +33,17 @@ def del_exp_date(row_id):
     db.session.commit()
     return redirect(url_for('expdate.expdate'))
 
-@bp.route('/inc_amount/<row_id>')
-def inc_amount(row_id):
+@bp.route('/_inc_amount/<row_id>', methods=['POST'])
+def _inc_amount(row_id):
     row_id = ExpdateTable.query.filter_by(id=row_id).first()
     row_id.amount += 1
     db.session.commit()
-    return redirect(url_for('expdate.expdate'))
+    return json.dumps({'amount': row_id.amount})
     
-@bp.route('/dec_amount/<row_id>')
-def dec_amount(row_id):
+@bp.route('/_dec_amount/<row_id>', methods=['POST'])
+def _dec_amount(row_id):
     row_id = ExpdateTable.query.filter_by(id=row_id).first()
     if row_id.amount > 0:
         row_id.amount -= 1
         db.session.commit()
-    return redirect(url_for('expdate.expdate'))
+    return json.dumps({'amount': row_id.amount})

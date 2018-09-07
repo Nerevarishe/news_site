@@ -13,14 +13,65 @@
 {{ super() }}
 <script>
     $(document).ready(function(){
+        $(".ajax-href-inc").click(function(e){
+            e.preventDefault();
+            var id = ($(this).attr("id"));
+            var amount_id = "#amount-" + id;
+            var url = "/expdate/_inc_amount/" + id;
+            $.ajax({
+                    url: url,
+                    type: "POST",
+                    success: function(response) {
+                        var json = jQuery.parseJSON(response);
+                        if (json.amount != 0) {
+                            var tableRow = $(amount_id).parent();
+                            tableRow.removeClass("table-danger");
+                            }
+                        $(amount_id).text(json.amount);
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+    })
+</script>
+<script>
+    $(document).ready(function(){
+        $(".ajax-href-dec").click(function(e){
+            e.preventDefault();
+            var id = ($(this).attr("id"));
+            var amount_id = "#amount-" + id;
+            var url = "/expdate/_dec_amount/" + id;
+            $.ajax({
+                    url: url,
+                    type: "POST",
+                    success: function(response) {
+                        var json = jQuery.parseJSON(response);
+                        console.log(amount_id);
+                        if (json.amount == 0) {
+                            var tableRow = $(amount_id).parent();
+                            tableRow.addClass("table-danger");
+                            }
+                        $(amount_id).text(json.amount);
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+    })
+</script>
+<script>
+    $(document).ready(function(){
         $('.amount').each(function() {
             var amount = $(this).text();
             if (amount == '0') {
                 var tableRow = $(this).parent();
                 tableRow.addClass("table-danger");
             }
-        })
-    });
+        });
+    })
 </script>
 <script src="{{ url_for('static', filename='js/bootstrap-confirm-delete.js') }}"></script>
 <script src="{{ url_for('static', filename='js/bootstrap-confirm-delete-conf.js') }}"></script>
@@ -42,16 +93,18 @@
         <tr class="table-row">
             <td>{{ row.drug_name }}</td>
             <td>{{ row.exp_date.strftime("%m/%Y") }}</td>
-            <td class="amount">{{ row.amount }}</td>
+            <td class="amount" id="amount-{{ row.id }}">{{ row.amount }}</td>
             <td>
-                <a href="{{ url_for('expdate.inc_amount', row_id=row.id) }}"
-                   class="btn btn-outline-primary"
-                   title="{{ _('Increase amount') }}">
+                <a href="#"
+                   class="btn btn-outline-primary ajax-href-inc"
+                   title="{{ _('Increase amount') }}"
+                   id="{{ row.id }}">
                     <i class="fas fa-plus"></i>
                 </a>
-                <a href="{{ url_for('expdate.dec_amount', row_id=row.id) }}"
-                   class="btn btn-outline-primary"
-                   title="{{ _('Decrease amount') }}">
+                <a href="#"
+                   class="btn btn-outline-primary ajax-href-dec"
+                   title="{{ _('Decrease amount') }}"
+                   id="{{ row.id }}">
                     <i class="fas fa-minus"></i>
                 </a>
                 {% if current_user.is_authenticated %}
