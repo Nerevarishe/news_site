@@ -48,7 +48,6 @@
                     type: "POST",
                     success: function(response) {
                         var json = jQuery.parseJSON(response);
-                        console.log(amount_id);
                         if (json.amount == 0) {
                             var tableRow = $(amount_id).parent();
                             tableRow.addClass("table-danger");
