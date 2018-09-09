@@ -60,3 +60,12 @@ class ExpdateTable(db.Model):
     
     def __repr__(self):
         return 'Drug Name: {}\n Exp. Date: {}\n amount: {}'.format(self.drug_name, self.exp_date, self.amount)
+    
+class SOPPost(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String)
+    body = db.Column(db.String)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    
+    def __repr__(self):
+        return 'Title: {}, Post: {}'.format(self.title, self.body)
