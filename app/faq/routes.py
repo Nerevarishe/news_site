@@ -42,7 +42,7 @@ def edit_faq(faq_id):
     form = FaqForm(title=edit_faq_id.title, body=edit_faq_id.body)
     if form.validate_on_submit():
         edit_faq_id.title = form.title.data
-        edit_faq_id.body = body=form.body.data
+        edit_faq_id.body = form.body.data
         db.session.commit()
         return redirect(url_for('faq.faq'))
     return render_template('add_faq.html', form=form)

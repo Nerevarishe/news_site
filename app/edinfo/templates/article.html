@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{ super() }}
+    <style>
+        #myBtn {
+          display: none;
+          position: fixed;
+          bottom: 20px;
+          right: 30px;
+          z-index: 99;
+          font-size: 18px;
+          /*border: none;
+          outline: none;
+          background-color: red;
+          color: white;
+          cursor: pointer;
+          padding: 15px;
+          border-radius: 4px;
+
+        }
+
+        #myBtn:hover {
+          background-color: #555;
+        }*/
+    </style>
+{% endblock %}
+
+{% block action_menu %}
+
+{% endblock %}
+
+{% block app_content %}
+<div class="row">
+    <div class="col-md-12">
+        {{ article.body | safe }}
+    </div>    
+</div>
+
+
+<button class="btn btn-outline-primary" onclick="topFunction()" id="myBtn" title="{{ _('Go to top') }}">{{ _('Top') }}</button>
+
+<script>
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+    } else {
+        document.getElementById("myBtn").style.display = "none";
+    }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+</script>
+{% endblock %}

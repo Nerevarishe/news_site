@@ -41,6 +41,9 @@ app.register_blueprint(expdate_bp, url_prefix='/expdate')
 from app.SOP import bp as SOP_bp
 app.register_blueprint(SOP_bp, url_prefix='/SOP')
 
+from app.edinfo import bp as edinfo_bp
+app.register_blueprint(edinfo_bp, url_prefix='/edinfo')
+
 @babel.localeselector
 def get_locale():
     return request.accept_languages.best_match(app.config['LANGUAGES'])
