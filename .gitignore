@@ -2,7 +2,7 @@
 logs/
 
 # Files in uploads dir
-uploads/*
+app/static/uploads/*
 
 # SQLlite DB
 *.db
