@@ -45,6 +45,9 @@
                 </li>
                 {% else %}
                 <li class="nav-item">
+                    <span class="nav-link">{{ current_user.username }}</span>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link float-right" href="{{ url_for('auth.logout') }}">{{ _('Logout') }}</a>
                 </li>
                 {% endif %}
@@ -61,7 +64,6 @@
             {% endblock %}
             <hr>
         </div>
-        {% else %}
         {% endif %}
         {% with messages = get_flashed_messages() %}
         {% if messages %}

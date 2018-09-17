@@ -17,6 +17,9 @@ class Config(object):
     # Posts per page on index page
     POSTS_PER_PAGE = 5
     
+    # Bootstrap settings
+    BOOTSTRAP_SERVE_LOCAL = True
+    
     # Upload dir
     UPLOADED_PATH = os.path.join(basedir, 'app/static/uploads')
     
@@ -35,3 +38,8 @@ class Config(object):
     # xlrd settings
     # From what row start to read sheet. Counting from 0.
     FIRST_ROW = 4
+    COL_DRUG_NAME = 1
+    COL_DATE = 2
+    COL_AMOUNT = 4
+    # How many rows substract from report bottom
+    SUBSTR_ROW = 3

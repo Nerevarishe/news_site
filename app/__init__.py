@@ -51,7 +51,6 @@ app.register_blueprint(SOP_bp, url_prefix='/SOP')
 from app.edinfo import bp as edinfo_bp
 app.register_blueprint(edinfo_bp, url_prefix='/edinfo')
 
-
 # Babel module init
 @babel.localeselector
 def get_locale():

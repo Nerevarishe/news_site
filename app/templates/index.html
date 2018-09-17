@@ -19,9 +19,6 @@
 {% endblock %}
 
 {% block app_content %}
-    {% if current_user.is_authenticated %}
-    <h1>Hi, {{ current_user.username }}!</h1>
-    {% endif %}
     {% for new in news %}
         <div class="container">
             <div class="card">

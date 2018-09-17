@@ -36,14 +36,12 @@ def upload_table():
         workbook = xlrd.open_workbook(wb_file)
         sheet = workbook.sheet_by_index(0)
         first_row = app.config['FIRST_ROW']
-        for rowno in range(first_row, sheet.nrows):
-            drug_exp_date = xlrd.xldate.xldate_as_datetime(sheet.cell(rowno, 1).value, workbook.datemode)
+        for rowno in range(first_row, sheet.nrows - app.config['SUBSTR_ROW']):
+            drug_exp_date = xlrd.xldate.xldate_as_datetime(sheet.cell(rowno, app.config['COL_DATE']).value, workbook.datemode)
             expdate_row = ExpdateTable()
-            expdate_row.drug_name = sheet.cell(rowno, 0).value
+            expdate_row.drug_name = sheet.cell(rowno, app.config['COL_DRUG_NAME']).value
             expdate_row.exp_date = drug_exp_date
-            expdate_row.amount = sheet.cell(rowno, 2).value
-            print(rowno)
-            print(expdate_row)
+            expdate_row.amount = sheet.cell(rowno, app.config['COL_AMOUNT']).value
             db.session.add(expdate_row)
             db.session.commit()
         os.remove(wb_file)
