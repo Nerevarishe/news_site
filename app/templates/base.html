@@ -6,7 +6,7 @@
 
 {% block scripts %}
     {{ super() }}
-    {{ moment.include_moment() }}
+    {{ moment.include_moment(local_js='/static/js/moment-with-locales.js') }}
     {{ moment.lang(g.locale) }}
 {% endblock %}
 

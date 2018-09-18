@@ -37,9 +37,9 @@ class Config(object):
     
     # xlrd settings
     # From what row start to read sheet. Counting from 0.
-    FIRST_ROW = 4
+    FIRST_ROW = 5
     COL_DRUG_NAME = 1
-    COL_DATE = 2
-    COL_AMOUNT = 4
+    COL_DATE = 4
+    COL_AMOUNT = 3
     # How many rows substract from report bottom
-    SUBSTR_ROW = 3
+    SUBSTR_ROW = 0
