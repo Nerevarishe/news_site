@@ -9,6 +9,7 @@ from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
 from flask_babel import Babel
+from flask_admin import Admin
 import logging
 from logging.handlers import RotatingFileHandler
 import os
@@ -23,11 +24,22 @@ bootstrap = Bootstrap(app)
 moment = Moment(app)
 babel = Babel(app)
 ckeditor = CKEditor(app)
+admin = Admin(app, name='News Site')
 
 # Flask-Uploads settings
 documents = UploadSet('documents', DOCUMENTS)
 configure_uploads(app, documents)
 
+# Flask-Admin Views
+from flask_admin.contrib.sqla import ModelView
+from app.models import *
+admin.add_view(ModelView(User, db.session))
+admin.add_view(ModelView(News, db.session))
+admin.add_view(ModelView(FaqPost, db.session))
+admin.add_view(ModelView(LawPost, db.session))
+admin.add_view(ModelView(ExpdateTable, db.session))
+admin.add_view(ModelView(SOPPost, db.session))
+admin.add_view(ModelView(EdinfoPost, db.session))
 
 # Blueprints of modules init
 from app.errors import bp as errors_bp
