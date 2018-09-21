@@ -1,15 +1,15 @@
 from flask import Flask
-from flask import request
+from flask import request, redirect, url_for
 from config import Config
 from flask_uploads import UploadSet, DOCUMENTS, configure_uploads
 from flask_ckeditor import CKEditor
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
 from flask_babel import Babel
-from flask_admin import Admin
+from flask_admin import Admin, AdminIndexView, expose
 import logging
 from logging.handlers import RotatingFileHandler
 import os
@@ -33,13 +33,30 @@ configure_uploads(app, documents)
 # Flask-Admin Views
 from flask_admin.contrib.sqla import ModelView
 from app.models import *
-admin.add_view(ModelView(User, db.session))
-admin.add_view(ModelView(News, db.session))
-admin.add_view(ModelView(FaqPost, db.session))
-admin.add_view(ModelView(LawPost, db.session))
-admin.add_view(ModelView(ExpdateTable, db.session))
-admin.add_view(ModelView(SOPPost, db.session))
-admin.add_view(ModelView(EdinfoPost, db.session))
+class AdminView(ModelView):
+
+    def is_accessible(self):
+        return current_user.is_authenticated
+
+    def inaccessible_callback(self, name, **kwargs):
+        # redirect to login page if user doesn't have access
+        return redirect(url_for('auth.login', next=request.url))
+    
+class MyAdminIndexView(AdminIndexView):
+
+    @expose('/')
+    def index(self):
+        if not current_user.is_authenticated:
+            return redirect(url_for('auth.login'))
+        return super(MyAdminIndexView, self).index()
+    
+admin.add_view(AdminView(User, db.session))
+admin.add_view(AdminView(News, db.session))
+admin.add_view(AdminView(FaqPost, db.session))
+admin.add_view(AdminView(LawPost, db.session))
+admin.add_view(AdminView(ExpdateTable, db.session))
+admin.add_view(AdminView(SOPPost, db.session))
+admin.add_view(AdminView(EdinfoPost, db.session))
 
 # Blueprints of modules init
 from app.errors import bp as errors_bp
