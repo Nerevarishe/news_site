@@ -80,6 +80,9 @@ app.register_blueprint(SOP_bp, url_prefix='/SOP')
 from app.edinfo import bp as edinfo_bp
 app.register_blueprint(edinfo_bp, url_prefix='/edinfo')
 
+from app.defectura import bp as defectura_bp
+app.register_blueprint(defectura_bp, url_prefix='/defectura')
+
 # Babel module init
 @babel.localeselector
 def get_locale():

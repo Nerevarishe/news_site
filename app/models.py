@@ -78,3 +78,12 @@ class EdinfoPost(db.Model):
     
     def __repr__(self):
         return 'Title: {}, Post: {}'.format(self.title, self.body)
+    
+class DefecturaCard(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    drug_name = db.Column(db.String)
+    date = db.Column(db.Date, index=True)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    def __repr__(self):
+        return 'Drug name: {}, date: {}'.format(self.drug_name, self.timestamp)

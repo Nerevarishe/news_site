@@ -37,6 +37,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('edinfo.edinfo') }}">{{ _('Education Information') }}</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('defectura.defectura') }}">{{ _('Defectura') }}</a>
+                </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 {% if current_user.is_anonymous %}

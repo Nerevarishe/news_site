@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block action_menu %}
+Add Drug
+{% endblock %}
+
+{% block app_content %}
+<div>
+    {{ wtf.quick_form(form) }}
+</div>
+{% for defectura_card in defectura_cards %}
+{{ defectura_card.drug_name }}{{ defectura_card.timestamp }}
+<br>
+{% endfor %}
+{% endblock %}
