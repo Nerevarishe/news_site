@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-16 04:27-0400\n"
+"POT-Creation-Date: 2018-10-17 13:58+0300\n"
 "PO-Revision-Date: 2018-08-23 01:00+0300\n"
 "Last-Translator: \n"
 "Language: ru\n"
@@ -23,9 +23,9 @@ msgstr ""
 msgid "Add news"
 msgstr "Добавить новость"
 
-#: app/SOP/forms.py:12 app/edinfo/forms.py:12 app/expdate/forms.py:14
-#: app/expdate/forms.py:18 app/faq/forms.py:11 app/forms.py:10
-#: app/orders/forms.py:11
+#: app/SOP/forms.py:12 app/defectura/forms.py:9 app/edinfo/forms.py:12
+#: app/expdate/forms.py:14 app/expdate/forms.py:18 app/faq/forms.py:11
+#: app/forms.py:10 app/orders/forms.py:11
 msgid "Submit"
 msgstr "Отправить"
 
@@ -42,7 +42,7 @@ msgstr "Добавить новость"
 msgid "Title"
 msgstr "Заголовок"
 
-#: app/SOP/forms.py:11 app/templates/base.html:35
+#: app/SOP/forms.py:11 app/templates/base.html:38
 msgid "SOP"
 msgstr "СОП"
 
@@ -59,24 +59,24 @@ msgid "Edit SOP"
 msgstr "Редактировать СОП"
 
 #: app/SOP/templates/SOP.html:41 app/edinfo/templates/article.html:41
-#: app/orders/templates/law.html:97
+#: app/orders/templates/law.html:96
 msgid "Go to top"
 msgstr "Вверх"
 
 #: app/SOP/templates/SOP.html:41 app/edinfo/templates/article.html:41
-#: app/orders/templates/law.html:97
+#: app/orders/templates/law.html:96
 msgid "Top"
 msgstr "Вверх"
 
 #: app/SOP/templates/SOP_list.html:22
-#: app/edinfo/templates/articles_list.html:22 app/faq/templates/faq.html:39
-#: app/orders/templates/orders.html:29 app/templates/index.html:31
+#: app/edinfo/templates/articles_list.html:22 app/faq/templates/faq.html:38
+#: app/orders/templates/orders.html:29 app/templates/index.html:28
 msgid "Delete post"
 msgstr "Удалить запись"
 
 #: app/SOP/templates/SOP_list.html:27
-#: app/edinfo/templates/articles_list.html:27 app/faq/templates/faq.html:44
-#: app/orders/templates/orders.html:34 app/templates/index.html:32
+#: app/edinfo/templates/articles_list.html:27 app/faq/templates/faq.html:43
+#: app/orders/templates/orders.html:34 app/templates/index.html:29
 msgid "Edit post"
 msgstr "Редактировать запись"
 
@@ -96,16 +96,36 @@ msgstr "Запомнить меня"
 msgid "Sign In"
 msgstr "Войти"
 
-#: app/auth/routes.py:20
+#: app/auth/routes.py:17
 msgid "Invalid username or password"
 msgstr "Неверные имя пользователя, или пароль"
 
-#: app/edinfo/forms.py:11 app/faq/forms.py:10 app/faq/routes.py:16
-#: app/orders/forms.py:10 app/templates/base.html:26
+#: app/defectura/forms.py:8 app/edinfo/forms.py:11 app/faq/forms.py:10
+#: app/faq/routes.py:16 app/orders/forms.py:10 app/templates/base.html:26
 msgid "FAQ"
 msgstr "ЧаВо"
 
-#: app/edinfo/routes.py:14 app/templates/base.html:38
+#: app/defectura/routes.py:21 app/templates/base.html:35
+msgid "Defectura"
+msgstr "Дефектура"
+
+#: app/defectura/templates/defectura.html:24
+msgid "Defecture for"
+msgstr "Дефектура за"
+
+#: app/defectura/templates/defectura.html:35
+msgid "Drug Name"
+msgstr "Название лекарства"
+
+#: app/defectura/templates/defectura.html:36
+msgid "Options"
+msgstr "Опции"
+
+#: app/defectura/templates/defectura.html:46
+msgid "Search in Google"
+msgstr "Искать в Google"
+
+#: app/edinfo/routes.py:14 app/templates/base.html:41
 msgid "Education Information"
 msgstr "Учебная информация"
 
@@ -153,7 +173,7 @@ msgstr "Сроки годности"
 msgid "Add Exp. Date"
 msgstr "Добавление препаратов с сроками"
 
-#: app/expdate/routes.py:51
+#: app/expdate/routes.py:49
 msgid "Upload Table"
 msgstr "Загрузить таблицу"
 
@@ -181,7 +201,7 @@ msgstr "Уменьшить количество"
 msgid "Delete row"
 msgstr "Удалить строку"
 
-#: app/faq/routes.py:28 app/faq/templates/faq.html:27
+#: app/faq/routes.py:28 app/faq/templates/faq.html:26
 msgid "Add FAQ"
 msgstr "Добавить вопрос"
 
@@ -201,19 +221,19 @@ msgstr "Новостной сайт"
 msgid "Welcome to News Site"
 msgstr "Добро пожаловать"
 
-#: app/templates/base.html:44
+#: app/templates/base.html:47
 msgid "Login"
 msgstr "Войти"
 
-#: app/templates/base.html:48
+#: app/templates/base.html:54
 msgid "Logout"
 msgstr "Выйти"
 
-#: app/templates/index.html:41
+#: app/templates/index.html:38
 msgid "Newer posts"
 msgstr "Новые записи"
 
-#: app/templates/index.html:44
+#: app/templates/index.html:41
 msgid "Older posts"
 msgstr "Старые записи"
 

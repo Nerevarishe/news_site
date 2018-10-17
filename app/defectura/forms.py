@@ -5,5 +5,5 @@ from flask_babel import lazy_gettext as _l
 
     
 class DefecturaForm(FlaskForm):
-    drug_name = StringField(_l('FAQ'), validators=[DataRequired()])
+    drug_name = StringField(_l('Defectura'), validators=[DataRequired()])
     submit = SubmitField(_l('Submit'))

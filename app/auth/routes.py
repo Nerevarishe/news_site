@@ -1,14 +1,11 @@
 from flask import render_template, flash, redirect, url_for
-from flask_login import current_user, login_user, logout_user, login_required
-from app import app, db
+from flask_login import current_user, login_user, logout_user
+from flask_babel import lazy_gettext as _
 from app.auth.forms import LoginForm
 from app.models import User
 from app.auth import bp 
 
 
-#############################################
-# Login section
-###
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:

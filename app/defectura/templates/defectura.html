@@ -1,16 +1,59 @@
 {% extends "base.html" %}
 {% import 'bootstrap/wtf.html' as wtf %}
 
+{% block head %}
+{{ super() }}
+<link rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+      crossorigin="anonymous">
+{% endblock %}
+
 {% block action_menu %}
-Add Drug
 {% endblock %}
 
 {% block app_content %}
-<div>
-    {{ wtf.quick_form(form) }}
-</div>
-{% for defectura_card in defectura_cards %}
-{{ defectura_card.drug_name }}{{ defectura_card.timestamp }}
-<br>
-{% endfor %}
+    <div>
+        {{ wtf.quick_form(form) }}
+    </div>
+    <hr>
+    {% for date, list in defectura_cards | groupby('date') %}
+        <div class="card">
+            <div class="card-header">
+                {{ _('Defecture for') }} {{ date.strftime('%d/%m/%Y') }}
+                {% if current_user.is_authenticated %}
+                <span class="float-right">
+                    <a href="{{ url_for('defectura.delete_card', date=date) }}"
+                       class="btn btn-outline-primary">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </span>
+                {% endif %}
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <tr>
+                        <th>{{ _('Drug Name') }}</th>
+                        <th>{{ _('Options') }}</th>
+                    </tr>
+                    {% for item in list %}
+                    <tr>
+                        <td>{{ item.drug_name }}</td>
+                        <td>
+                            <span class="float-right">
+                                <a target="_blank"
+                                   href="https://www.google.com/search?q={{ item.drug_name }}"
+                                   class="btn btn-outline-primary"
+                                   title="{{ _('Search in Google') }}">
+                                    <i class="fab fa-google"></i>
+                                </a>
+                            </span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <br>
+    {% endfor %}
 {% endblock %}

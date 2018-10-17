@@ -1,8 +1,7 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db, login
 from flask_login import UserMixin
-from datetime import datetime
-
+from datetime import datetime, date
 
 @login.user_loader
 def load_user(id):
@@ -86,4 +85,4 @@ class DefecturaCard(db.Model):
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
     
     def __repr__(self):
-        return 'Drug name: {}, date: {}'.format(self.drug_name, self.timestamp)
+        return 'Drug name: {}, date: {}'.format(self.drug_name, self.date)
