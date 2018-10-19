@@ -19,6 +19,14 @@ def defectura():
         db.session.commit()
     defectura_cards = DefecturaCard().query.order_by(DefecturaCard.date).all()
     return render_template('defectura.html', title=_('Defectura'), form=form, defectura_cards=defectura_cards)
+    
+
+@bp.route('del_item/<id>')
+def del_item(id):
+    query = DefecturaCard().query.filter_by(id=id).first()
+    db.session.delete(query)
+    db.session.commit()
+    return redirect(url_for('defectura.defectura'))
 
 
 @bp.route('/delete_card/<date>')

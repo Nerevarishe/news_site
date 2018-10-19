@@ -47,6 +47,11 @@
                                    title="{{ _('Search in Google') }}">
                                     <i class="fab fa-google"></i>
                                 </a>
+                                <a href="{{ url_for('defectura.del_item', id=item.id) }}"
+                                   class="btn btn-outline-primary"
+                                   title="{{ _('Delete item') }}">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
                             </span>
                         </td>
                     </tr>
