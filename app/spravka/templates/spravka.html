@@ -1,0 +1,34 @@
+
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block action_menu %}
+
+{% endblock %}
+
+{% block app_content %}
+    {% if current_user.is_authenticated %}
+        {{ wtf.quick_form(drugstore_list_form) }}
+    {% endif %}
+    <table class="table">
+        <tr>
+            <th>{{ _('Name') }}</th>
+            <th>{{ _('Adress') }}</th>
+            <th>{{ _('Work Time') }}</th>
+            <th>{{ _('Phone') }}</th>
+            <th>{{ _('IP Phone') }}</th>
+            <th>{{ _('Options') }}</th>
+        </tr>
+        {% for item in drugstore_list %}
+        <tr>
+            <td>{{ item.ds_name }}</td>
+            <td>{{ item.ds_adress }}</td>
+            <td>{{ item.ds_worktime }}</td>
+            <td>{{ item.ds_phone }}</td>
+            <td>{{ item.ds_ip_phone }}</td>
+            <td>OPTIONS</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+{% endblock %}

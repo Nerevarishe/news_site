@@ -88,3 +88,24 @@ class DefecturaCard(db.Model):
     
     def __repr__(self):
         return 'Drug name: {}, date: {}'.format(self.drug_name, self.date)
+
+class DrugstoreList(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    ds_name = db.Column(db.String)
+    ds_adress = db.Column(db.String)
+    ds_worktime = db.Column(db.String)
+    ds_phone = db.Column(db.String)
+    ds_ip_phone = db.Column(db.String)
+
+    def __repr__(self):
+        return 'id: {}, ds_name: {}, ds_adress: {}, ds_worktime: {}, ds_phone: {}, ds_ip_phone: {}'.format(self.id, self.ds_name, self.ds_adress, self.worktime, self.ds_phone, self.ds_ip_phone)
+
+
+class ServiceCenterList(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    brands = db.Column(db.String)
+    sc_adress = db.Column(db.String)
+    sc_phone = db.Column(db.String)
+    
+    def __repr__(self):
+        return 'id: {}, brands: {}, sc_adress: {}, sc_phone: {}'.format(self.id, self.brands, self.sc_adress, self.sc_phone)

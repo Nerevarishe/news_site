@@ -84,6 +84,9 @@ app.register_blueprint(edinfo_bp, url_prefix='/edinfo')
 from app.defectura import bp as defectura_bp
 app.register_blueprint(defectura_bp, url_prefix='/defectura')
 
+from app.spravka import bp as spravka_bp
+app.register_blueprint(spravka_bp, url_prefix='/spravka')
+
 # Babel module init
 @babel.localeselector
 def get_locale():
