@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, request
 from flask_login import login_required
 from flask_babel import _
 from app import db
@@ -14,7 +14,8 @@ def defectura():
     if form.validate_on_submit():
         date = datetime.utcnow()
         date = date.date()
-        add_string = DefecturaCard(drug_name=form.drug_name.data, date=date)
+        ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+        add_string = DefecturaCard(drug_name=form.drug_name.data, date=date, ip=ip)
         db.session.add(add_string)
         db.session.commit()
     defectura_cards = DefecturaCard().query.order_by(DefecturaCard.date).all()

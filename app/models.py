@@ -1,3 +1,4 @@
+from flask import request
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db, login
 from flask_login import UserMixin
@@ -82,6 +83,7 @@ class DefecturaCard(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     drug_name = db.Column(db.String)
     date = db.Column(db.Date, index=True)
+    ip = db.Column(db.String)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
     
     def __repr__(self):

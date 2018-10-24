@@ -57,6 +57,7 @@ admin.add_view(AdminView(LawPost, db.session))
 admin.add_view(AdminView(ExpdateTable, db.session))
 admin.add_view(AdminView(SOPPost, db.session))
 admin.add_view(AdminView(EdinfoPost, db.session))
+admin.add_view(AdminView(DefecturaCard, db.session))
 
 # Blueprints of modules init
 from app.errors import bp as errors_bp
