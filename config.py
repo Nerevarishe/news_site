@@ -32,7 +32,7 @@ class Config(object):
     UPLOADS_DEFAULT_DEST = UPLOADED_PATH
     UPLOADS_DEFAULT_URL = 'http://localhost:5000/static/uploads/'
  
-    UPLOADED_DOCUMENTS_DEST =  UPLOADED_PATH
+    UPLOADED_DOCUMENTS_DEST = UPLOADED_PATH
     UPLOADED_DOCUMENTS_URL = 'http://localhost:5000/static/uploads/'
     
     # xlrd settings

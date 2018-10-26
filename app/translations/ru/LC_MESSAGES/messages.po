@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-17 13:58+0300\n"
+"POT-Creation-Date: 2018-10-26 14:12+0300\n"
 "PO-Revision-Date: 2018-08-23 01:00+0300\n"
 "Last-Translator: \n"
 "Language: ru\n"
@@ -25,15 +25,16 @@ msgstr "Добавить новость"
 
 #: app/SOP/forms.py:12 app/defectura/forms.py:9 app/edinfo/forms.py:12
 #: app/expdate/forms.py:14 app/expdate/forms.py:18 app/faq/forms.py:11
-#: app/forms.py:10 app/orders/forms.py:11
+#: app/forms.py:10 app/orders/forms.py:11 app/spravka/forms.py:14
+#: app/spravka/forms.py:21
 msgid "Submit"
 msgstr "Отправить"
 
-#: app/routes.py:29 app/templates/base.html:23
+#: app/routes.py:24 app/templates/base.html:23
 msgid "Home"
 msgstr "Главная"
 
-#: app/routes.py:42
+#: app/routes.py:37
 msgid "Add News"
 msgstr "Добавить новость"
 
@@ -100,30 +101,36 @@ msgstr "Войти"
 msgid "Invalid username or password"
 msgstr "Неверные имя пользователя, или пароль"
 
-#: app/defectura/forms.py:8 app/edinfo/forms.py:11 app/faq/forms.py:10
-#: app/faq/routes.py:16 app/orders/forms.py:10 app/templates/base.html:26
-msgid "FAQ"
-msgstr "ЧаВо"
-
-#: app/defectura/routes.py:21 app/templates/base.html:35
+#: app/defectura/forms.py:8 app/defectura/routes.py:22
+#: app/templates/base.html:35
 msgid "Defectura"
 msgstr "Дефектура"
 
-#: app/defectura/templates/defectura.html:24
+#: app/defectura/templates/defectura.html:23
 msgid "Defecture for"
 msgstr "Дефектура за"
 
-#: app/defectura/templates/defectura.html:35
+#: app/defectura/templates/defectura.html:36
 msgid "Drug Name"
 msgstr "Название лекарства"
 
-#: app/defectura/templates/defectura.html:36
+#: app/defectura/templates/defectura.html:37
+#: app/spravka/templates/spravka.html:18
 msgid "Options"
 msgstr "Опции"
 
-#: app/defectura/templates/defectura.html:46
+#: app/defectura/templates/defectura.html:47
 msgid "Search in Google"
 msgstr "Искать в Google"
+
+#: app/defectura/templates/defectura.html:52
+msgid "Delete item"
+msgstr "Удалить позицию"
+
+#: app/edinfo/forms.py:11 app/faq/forms.py:10 app/faq/routes.py:16
+#: app/orders/forms.py:10 app/templates/base.html:26
+msgid "FAQ"
+msgstr "ЧаВо"
 
 #: app/edinfo/routes.py:14 app/templates/base.html:41
 msgid "Education Information"
@@ -213,6 +220,48 @@ msgstr "Приказы"
 msgid "Add law"
 msgstr "Добавить приказ"
 
+#: app/spravka/forms.py:9
+msgid "Drug Store"
+msgstr "Аптека"
+
+#: app/spravka/forms.py:10 app/spravka/forms.py:19
+#: app/spravka/templates/spravka.html:13
+msgid "Adress"
+msgstr "Адрес"
+
+#: app/spravka/forms.py:11 app/spravka/templates/spravka.html:14
+msgid "Work Time"
+msgstr "Время работы"
+
+#: app/spravka/forms.py:12 app/spravka/forms.py:20
+#: app/spravka/templates/spravka.html:15
+msgid "Phone"
+msgstr "Телефон"
+
+#: app/spravka/forms.py:13 app/spravka/templates/spravka.html:16
+msgid "IP Phone"
+msgstr "IP Телефон"
+
+#: app/spravka/forms.py:18
+msgid "Brands"
+msgstr "Брэнды"
+
+#: app/spravka/routes.py:13 app/templates/base.html:44
+msgid "Reference Information"
+msgstr "Справочная информация"
+
+#: app/spravka/routes.py:29 app/spravka/templates/spravka.html:6
+msgid "Add Drugstore"
+msgstr "Добавить аптеку"
+
+#: app/spravka/routes.py:49
+msgid "Edit Drugstore Info"
+msgstr "Редактировать аптеку"
+
+#: app/spravka/templates/spravka.html:12
+msgid "Name"
+msgstr "Имя"
+
 #: app/templates/base.html:4 app/templates/base.html:16
 msgid "News Site"
 msgstr "Новостной сайт"
@@ -221,11 +270,11 @@ msgstr "Новостной сайт"
 msgid "Welcome to News Site"
 msgstr "Добро пожаловать"
 
-#: app/templates/base.html:47
+#: app/templates/base.html:50
 msgid "Login"
 msgstr "Войти"
 
-#: app/templates/base.html:54
+#: app/templates/base.html:57
 msgid "Logout"
 msgstr "Выйти"
 

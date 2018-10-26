@@ -46,7 +46,7 @@ def edit_drugstore(id):
         edit_drugstore.ds_ip_phone = form.ds_ip_phone.data
         db.session.commit()
         return redirect(url_for('spravka.spravka'))
-    return render_template('add_drugstore.html', title=_('Edit Drusgstore Info'), form=form)
+    return render_template('add_drugstore.html', title=_('Edit Drugstore Info'), form=form)
 
 
 @bp.route('/del_drugstore/<id>', methods=['GET', 'POST'])
@@ -60,17 +60,17 @@ def del_drugstore(id):
 
 @bp.route('/add_SC', methods=['GET', 'POST'])
 @login_required
-def add_SC():
+def add_sc():
     pass
 
 
 @bp.route('/edit_SC', methods=['GET', 'POST'])
 @login_required
-def edit_SC():
+def edit_sc():
     pass
 
 
 @bp.route('/del_SC', methods=['GET', 'POST'])
 @login_required
-def del_SC():
+def del_sc():
     pass
