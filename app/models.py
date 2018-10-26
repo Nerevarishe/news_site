@@ -98,7 +98,8 @@ class DrugstoreList(db.Model):
     ds_ip_phone = db.Column(db.String)
 
     def __repr__(self):
-        return 'id: {}, ds_name: {}, ds_adress: {}, ds_worktime: {}, ds_phone: {}, ds_ip_phone: {}'.format(self.id, self.ds_name, self.ds_adress, self.worktime, self.ds_phone, self.ds_ip_phone)
+        return 'id: {}, ds_name: {}, ds_adress: {}, ds_worktime: {}, ds_phone: {}, ds_ip_phone: {}' \
+            .format(self.id, self.ds_name, self.ds_adress, self.worktime, self.ds_phone, self.ds_ip_phone)
 
 
 class ServiceCenterList(db.Model):
@@ -108,4 +109,5 @@ class ServiceCenterList(db.Model):
     sc_phone = db.Column(db.String)
     
     def __repr__(self):
-        return 'id: {}, brands: {}, sc_adress: {}, sc_phone: {}'.format(self.id, self.brands, self.sc_adress, self.sc_phone)
+        return 'id: {}, brands: {}, sc_adress: {}, sc_phone: {}'.format(self.id, self.brands, self.sc_adress,
+                                                                        self.sc_phone)

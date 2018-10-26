@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for
 from flask_login import login_required
 from flask_babel import _
 from app import db
-from app.spravka.forms import DrugstoreListForm, ServiceCenterList
+from app.spravka.forms import DrugstoreListForm, ServiceCenterListForm
 from app.models import DrugstoreList, ServiceCenterList
 from app.spravka import bp
 
@@ -10,7 +10,8 @@ from app.spravka import bp
 @bp.route('/', methods=['GET', 'POST'])
 def spravka():
     drugstore_list = DrugstoreList().query.order_by(DrugstoreList.ds_name).all()
-    return render_template('spravka.html', title=_('Reference Information'), drugstore_list=drugstore_list)
+    sc_list = ServiceCenterList().query.order_by(ServiceCenterList.brands).all()
+    return render_template('spravka.html', title=_('Reference Information'), drugstore_list=drugstore_list, sc_list=sc_list)
 
 
 @bp.route('/add_drugstore', methods=['GET', 'POST'])
@@ -61,16 +62,37 @@ def del_drugstore(id):
 @bp.route('/add_SC', methods=['GET', 'POST'])
 @login_required
 def add_sc():
-    pass
+    form = ServiceCenterListForm()
+    if form.validate_on_submit():
+        add_sc = ServiceCenterList(brands=form.brands.data,
+                                   sc_adress=form.sc_adress.data,
+                                   sc_phone=form.sc_phone.data)
+        db.session.add(add_sc)
+        db.session.commit()
+        return redirect(url_for('spravka.spravka'))
+    return render_template('add_sc.html', title=_('Add new Service Center'), form=form)
 
 
-@bp.route('/edit_SC', methods=['GET', 'POST'])
+@bp.route('/edit_SC/<id>', methods=['GET', 'POST'])
 @login_required
-def edit_sc():
-    pass
+def edit_sc(id):
+    edit_sc = ServiceCenterList().query.filter_by(id=id).first()
+    form = ServiceCenterListForm(brands=edit_sc.brands,
+                                 sc_adress=edit_sc.sc_adress,
+                                 sc_phone=edit_sc.sc_phone)
+    if form.validate_on_submit():
+        edit_sc.brands = form.brands.data
+        edit_sc.sc_adress = form.sc_adress.data
+        edit_sc.sc_phone = form.sc_phone.data
+        db.session.commit()
+        return redirect(url_for('spravka.spravka'))
+    return render_template('add_sc.html', title=_('Edit Service Center'), form=form)
 
 
-@bp.route('/del_SC', methods=['GET', 'POST'])
+@bp.route('/del_SC/<id>', methods=['GET', 'POST'])
 @login_required
-def del_sc():
-    pass
+def del_sc(id):
+    del_sc = ServiceCenterList().query.filter_by(id=id).first()
+    db.session.delete(del_sc)
+    db.session.commit()
+    return redirect(url_for('spravka.spravka'))

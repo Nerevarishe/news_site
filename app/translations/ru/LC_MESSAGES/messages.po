@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-26 14:12+0300\n"
+"POT-Creation-Date: 2018-10-26 18:42+0300\n"
 "PO-Revision-Date: 2018-08-23 01:00+0300\n"
 "Last-Translator: \n"
 "Language: ru\n"
@@ -25,8 +25,8 @@ msgstr "Добавить новость"
 
 #: app/SOP/forms.py:12 app/defectura/forms.py:9 app/edinfo/forms.py:12
 #: app/expdate/forms.py:14 app/expdate/forms.py:18 app/faq/forms.py:11
-#: app/forms.py:10 app/orders/forms.py:11 app/spravka/forms.py:14
-#: app/spravka/forms.py:21
+#: app/forms.py:10 app/orders/forms.py:11 app/spravka/forms.py:13
+#: app/spravka/forms.py:20
 msgid "Submit"
 msgstr "Отправить"
 
@@ -115,7 +115,7 @@ msgid "Drug Name"
 msgstr "Название лекарства"
 
 #: app/defectura/templates/defectura.html:37
-#: app/spravka/templates/spravka.html:18
+#: app/spravka/templates/spravka.html:20 app/spravka/templates/spravka.html:53
 msgid "Options"
 msgstr "Опции"
 
@@ -220,47 +220,71 @@ msgstr "Приказы"
 msgid "Add law"
 msgstr "Добавить приказ"
 
-#: app/spravka/forms.py:9
+#: app/spravka/forms.py:8
 msgid "Drug Store"
 msgstr "Аптека"
 
-#: app/spravka/forms.py:10 app/spravka/forms.py:19
-#: app/spravka/templates/spravka.html:13
+#: app/spravka/forms.py:9 app/spravka/forms.py:18
+#: app/spravka/templates/spravka.html:15 app/spravka/templates/spravka.html:50
 msgid "Adress"
 msgstr "Адрес"
 
-#: app/spravka/forms.py:11 app/spravka/templates/spravka.html:14
+#: app/spravka/forms.py:10 app/spravka/templates/spravka.html:16
 msgid "Work Time"
 msgstr "Время работы"
 
-#: app/spravka/forms.py:12 app/spravka/forms.py:20
-#: app/spravka/templates/spravka.html:15
+#: app/spravka/forms.py:11 app/spravka/forms.py:19
+#: app/spravka/templates/spravka.html:17 app/spravka/templates/spravka.html:51
 msgid "Phone"
 msgstr "Телефон"
 
-#: app/spravka/forms.py:13 app/spravka/templates/spravka.html:16
+#: app/spravka/forms.py:12 app/spravka/templates/spravka.html:18
 msgid "IP Phone"
 msgstr "IP Телефон"
 
-#: app/spravka/forms.py:18
+#: app/spravka/forms.py:17
 msgid "Brands"
 msgstr "Брэнды"
 
-#: app/spravka/routes.py:13 app/templates/base.html:44
+#: app/spravka/routes.py:14 app/templates/base.html:44
 msgid "Reference Information"
 msgstr "Справочная информация"
 
-#: app/spravka/routes.py:29 app/spravka/templates/spravka.html:6
+#: app/spravka/routes.py:30 app/spravka/templates/spravka.html:6
 msgid "Add Drugstore"
 msgstr "Добавить аптеку"
 
-#: app/spravka/routes.py:49
+#: app/spravka/routes.py:50
 msgid "Edit Drugstore Info"
 msgstr "Редактировать аптеку"
 
-#: app/spravka/templates/spravka.html:12
+#: app/spravka/routes.py:73
+msgid "Add new Service Center"
+msgstr "Добавить новый СЦ"
+
+#: app/spravka/routes.py:89
+msgid "Edit Service Center"
+msgstr "Редактировать СЦ"
+
+#: app/spravka/templates/spravka.html:7
+msgid "Add Service Center"
+msgstr "Добавить СЦ"
+
+#: app/spravka/templates/spravka.html:11
+msgid "Drugstore adresses"
+msgstr "Адреса аптек"
+
+#: app/spravka/templates/spravka.html:14
 msgid "Name"
 msgstr "Имя"
+
+#: app/spravka/templates/spravka.html:46
+msgid "Service Center Adresses"
+msgstr "Адреса СЦ"
+
+#: app/spravka/templates/spravka.html:49
+msgid "Brands Name"
+msgstr "Брэнды"
 
 #: app/templates/base.html:4 app/templates/base.html:16
 msgid "News Site"

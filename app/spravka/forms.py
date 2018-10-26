@@ -1,4 +1,3 @@
-
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
@@ -14,7 +13,7 @@ class DrugstoreListForm(FlaskForm):
     submit = SubmitField(_l('Submit'))
 
 
-class ServiceCenterList(FlaskForm):
+class ServiceCenterListForm(FlaskForm):
     brands = StringField(_l('Brands'), validators=[DataRequired()])
     sc_adress = StringField(_l('Adress'), validators=[DataRequired()])
     sc_phone = StringField(_l('Phone'), validators=[DataRequired()])
