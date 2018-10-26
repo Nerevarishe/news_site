@@ -3,13 +3,10 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block action_menu %}
-
+    <a href="{{ url_for('spravka.add_drugstore') }}" class="btn btn-outline-primary">{{ _('Add Drugstore') }}</a>
 {% endblock %}
 
 {% block app_content %}
-    {% if current_user.is_authenticated %}
-        {{ wtf.quick_form(drugstore_list_form) }}
-    {% endif %}
     <table class="table">
         <tr>
             <th>{{ _('Name') }}</th>
@@ -17,7 +14,9 @@
             <th>{{ _('Work Time') }}</th>
             <th>{{ _('Phone') }}</th>
             <th>{{ _('IP Phone') }}</th>
+            {%  if current_user.is_authenticated %}
             <th>{{ _('Options') }}</th>
+            {% endif %}
         </tr>
         {% for item in drugstore_list %}
         <tr>
@@ -26,7 +25,18 @@
             <td>{{ item.ds_worktime }}</td>
             <td>{{ item.ds_phone }}</td>
             <td>{{ item.ds_ip_phone }}</td>
-            <td>OPTIONS</td>
+            {%  if current_user.is_authenticated %}
+            <td>
+                <a href="{{ url_for('spravka.edit_drugstore', id=item.id) }}"
+                   class="btn btn-outline-primary">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="{{ url_for('spravka.del_drugstore', id=item.id) }}"
+                   class="btn btn-outline-primary">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
+            {% endif %}
         </tr>
         {% endfor %}
     </table>
