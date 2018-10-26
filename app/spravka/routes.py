@@ -7,11 +7,10 @@ from app.models import DrugstoreList, ServiceCenterList
 from app.spravka import bp
 
 
-@bp.route('/', methods=['GET', 'POST'])
-def spravka():
+@bp.route('/drugstores', methods=['GET', 'POST'])
+def drugstores():
     drugstore_list = DrugstoreList().query.order_by(DrugstoreList.ds_name).all()
-    sc_list = ServiceCenterList().query.order_by(ServiceCenterList.brands).all()
-    return render_template('spravka.html', title=_('Reference Information'), drugstore_list=drugstore_list, sc_list=sc_list)
+    return render_template('drugstores.html', title=_('Drugstores'), drugstore_list=drugstore_list)
 
 
 @bp.route('/add_drugstore', methods=['GET', 'POST'])
@@ -26,7 +25,7 @@ def add_drugstore():
                                       ds_ip_phone=form.ds_ip_phone.data)
         db.session.add(add_drugstore)
         db.session.commit()
-        return redirect(url_for('spravka.spravka'))
+        return redirect(url_for('spravka.drugstores'))
     return render_template('add_drugstore.html', title=_('Add Drugstore'), form=form)
 
 
@@ -46,7 +45,7 @@ def edit_drugstore(id):
         edit_drugstore.ds_phone = form.ds_phone.data
         edit_drugstore.ds_ip_phone = form.ds_ip_phone.data
         db.session.commit()
-        return redirect(url_for('spravka.spravka'))
+        return redirect(url_for('spravka.drugstores'))
     return render_template('add_drugstore.html', title=_('Edit Drugstore Info'), form=form)
 
 
@@ -56,7 +55,13 @@ def del_drugstore(id):
     del_drugstore = DrugstoreList().query.filter_by(id=id).first()
     db.session.delete(del_drugstore)
     db.session.commit()
-    return redirect(url_for('spravka.spravka'))
+    return redirect(url_for('spravka.drugstores'))
+
+
+@bp.route('/service_centres', methods=['GET', 'POST'])
+def service_centres():
+    sc_list = ServiceCenterList().query.order_by(ServiceCenterList.brands).all()
+    return render_template('service_centres.html', title=_('Service Centres'), sc_list=sc_list)
 
 
 @bp.route('/add_SC', methods=['GET', 'POST'])
@@ -69,7 +74,7 @@ def add_sc():
                                    sc_phone=form.sc_phone.data)
         db.session.add(add_sc)
         db.session.commit()
-        return redirect(url_for('spravka.spravka'))
+        return redirect(url_for('spravka.service_centres'))
     return render_template('add_sc.html', title=_('Add new Service Center'), form=form)
 
 
@@ -85,7 +90,7 @@ def edit_sc(id):
         edit_sc.sc_adress = form.sc_adress.data
         edit_sc.sc_phone = form.sc_phone.data
         db.session.commit()
-        return redirect(url_for('spravka.spravka'))
+        return redirect(url_for('spravka.service_centres'))
     return render_template('add_sc.html', title=_('Edit Service Center'), form=form)
 
 
@@ -95,4 +100,4 @@ def del_sc(id):
     del_sc = ServiceCenterList().query.filter_by(id=id).first()
     db.session.delete(del_sc)
     db.session.commit()
-    return redirect(url_for('spravka.spravka'))
+    return redirect(url_for('spravka.service_centres'))

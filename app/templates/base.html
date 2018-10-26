@@ -40,8 +40,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('edinfo.edinfo') }}">{{ _('Education Information') }}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('spravka.spravka') }}">{{ _('Reference Information') }}</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">{{ _('Reference Information') }}</a>
+                    <div class="dropdown-menu">
+                        <a href="{{ url_for('spravka.drugstores') }}"
+                           class="dropdown-item">{{ _('Drugstores') }}</a>
+                        <a href="{{ url_for('spravka.service_centres') }}"
+                           class="dropdown-item">{{ _('Service Centres') }}</a>
+                    </div>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
