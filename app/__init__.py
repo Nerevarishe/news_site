@@ -87,6 +87,10 @@ app.register_blueprint(defectura_bp, url_prefix='/defectura')
 from app.spravka import bp as spravka_bp
 app.register_blueprint(spravka_bp, url_prefix='/spravka')
 
+from app.chat import bp as chat_bp
+app.register_blueprint(chat_bp, url_prefix='/chat')
+
+
 # Babel module init
 @babel.localeselector
 def get_locale():
