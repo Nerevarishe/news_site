@@ -18,4 +18,4 @@ def handle_my_custom_event(json, methods=['GET', 'POST']):
 
 
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', port=8081, debug=True)
+    socketio.run(app, host='0.0.0.0', port=5001, debug=True)

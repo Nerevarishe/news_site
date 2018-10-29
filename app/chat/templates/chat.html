@@ -9,7 +9,7 @@
             crossorigin="anonymous">
     </script>
     <script>
-        var socket = io.connect('http://' + document.domain + ':' + '8081');
+        var socket = io.connect('http://' + document.domain + ':' + '5001');
         socket.on( 'connect', function() {
             socket.emit( 'my event', {
             data: 'User Connected'
@@ -40,16 +40,15 @@
 {% endblock %}
 
 {% block app_content %}
-    <dvi class="container">
-        <div id="chat_body"></div>
-        <div class="fixed-bottom" id="chat_panel">
-            <hr>
-            <form action="" method="POST">
-                {{ form.csrf_token }}
-                {{ form.name(class='username', placeholder=_('Username')) }}
-                {{ form.message(class='message', placeholder=_('Your message')) }}
-                {{ form.submit(class='btn btn-outline-primary') }}
-            </form>
-        </div>
-    </dvi>
+    <div class="" id="chat_panel">
+        <form action="" method="POST">
+            {{ form.csrf_token }}
+            {{ form.name(class='username', placeholder=_('Username')) }}
+            {{ form.message(class='message', placeholder=_('Your message')) }}
+            {{ form.submit(class='btn btn-outline-primary') }}
+        </form>
+    </div>
+    <hr>
+    <div class="d-flex flex-column-reverse" id="chat_body"></div>
+
 {% endblock %}
