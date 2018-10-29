@@ -72,6 +72,16 @@
         });
     })
 </script>
+<script>
+    $(document).ready(function(){
+        $("#search_expdate_table").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#exp_date_table tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
 <script src="{{ url_for('static', filename='js/bootstrap-confirm-delete.js') }}"></script>
 <script src="{{ url_for('static', filename='js/bootstrap-confirm-delete-conf.js') }}"></script>
 {% endblock %}
@@ -82,6 +92,8 @@
 {% endblock %}
 
 {% block app_content %}
+    <input type="text" id="search_expdate_table", placeholder="{{ _('Search...') }}">
+    <br><br>
     <table class="table">
         <tr>
             <th>{{ _('Drug name') }} <a href="#">S</a></th>
@@ -89,33 +101,35 @@
             <th>{{ _('Amount') }} <a href="#">S</a></th>
             <th>{{ _('Operations') }}</th>
         </tr>
-        {% for row in expdate_table %}
-        <tr class="table-row">
-            <td>{{ row.drug_name }}</td>
-            <td>{{ row.exp_date.strftime("%m/%Y") }}</td>
-            <td class="amount" id="amount-{{ row.id }}">{{ row.amount }}</td>
-            <td>
-                <a href="#"
-                   class="btn btn-outline-primary ajax-href-inc"
-                   title="{{ _('Increase amount') }}"
-                   id="{{ row.id }}">
-                    <i class="fas fa-plus"></i>
-                </a>
-                <a href="#"
-                   class="btn btn-outline-primary ajax-href-dec"
-                   title="{{ _('Decrease amount') }}"
-                   id="{{ row.id }}">
-                    <i class="fas fa-minus"></i>
-                </a>
-                {% if current_user.is_authenticated %}
-                <a href="{{ url_for('expdate.del_exp_date', row_id=row.id) }}"
-                   class="btn btn-outline-primary delete"
-                   title="{{ _('Delete row') }}">
-                    <i class="fas fa-trash-alt"></i>
-                </a>
-                {% endif %}
-            </td>
-        </tr>
-        {% endfor %}
+        <tbody id="exp_date_table">
+            {% for row in expdate_table %}
+            <tr class="table-row">
+                <td>{{ row.drug_name }}</td>
+                <td>{{ row.exp_date.strftime("%m/%Y") }}</td>
+                <td class="amount" id="amount-{{ row.id }}">{{ row.amount }}</td>
+                <td>
+                    <a href="#"
+                       class="btn btn-outline-primary ajax-href-inc"
+                       title="{{ _('Increase amount') }}"
+                       id="{{ row.id }}">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                    <a href="#"
+                       class="btn btn-outline-primary ajax-href-dec"
+                       title="{{ _('Decrease amount') }}"
+                       id="{{ row.id }}">
+                        <i class="fas fa-minus"></i>
+                    </a>
+                    {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('expdate.del_exp_date', row_id=row.id) }}"
+                       class="btn btn-outline-primary delete"
+                       title="{{ _('Delete row') }}">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
 {% endblock %}
