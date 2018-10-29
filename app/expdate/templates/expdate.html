@@ -81,6 +81,9 @@
             });
         });
     });
+    $('#clear_search_bar').click(function () {
+        $("#search_expdate_table").val('').focus();
+    });
 </script>
 <script src="{{ url_for('static', filename='js/bootstrap-confirm-delete.js') }}"></script>
 <script src="{{ url_for('static', filename='js/bootstrap-confirm-delete-conf.js') }}"></script>
@@ -93,6 +96,7 @@
 
 {% block app_content %}
     <input type="text" id="search_expdate_table", placeholder="{{ _('Search...') }}">
+    <button class="btn btn-outline-primary" id="clear_search_bar">X</button>
     <br><br>
     <table class="table">
         <tr>
