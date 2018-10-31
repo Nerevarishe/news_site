@@ -9,6 +9,15 @@
       crossorigin="anonymous">
 {% endblock %}
 
+{% block scripts %}
+    {{ super() }}
+    <script>
+        $( document ).ready(function() {
+            $( '#drug_name' ).val( '' ).focus();
+        });
+    </script>
+{% endblock %}
+
 {% block action_menu %}
 {% endblock %}
 
