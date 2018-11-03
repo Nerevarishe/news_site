@@ -27,10 +27,11 @@ except OSError as e:
 # Создаём базовые файлы модуля
 # __init__.py
 f = open(directory + '/__init__.py', 'w')
-f.write("""
-from flask import Blueprint
+f.write("""from flask import Blueprint
+
 
 bp = Blueprint('""" + module_name + """', __name__, template_folder='templates')
+
 
 from app.""" + module_name + """ import forms, routes
 """)
@@ -38,8 +39,7 @@ f.close()
 
 # routes.py
 f = open(directory + '/routes.py', 'w')
-f.write("""
-from flask import render_template, redirect, url_for
+f.write("""from flask import render_template, redirect, url_for
 from flask_login import login_required
 from flask_babel import _
 from app import db
@@ -57,8 +57,7 @@ f.close()
 
 # forms.py
 f = open(directory + '/forms.py', 'w')
-f.write("""
-from flask_wtf import FlaskForm
+f.write("""from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 from flask_ckeditor import CKEditorField
