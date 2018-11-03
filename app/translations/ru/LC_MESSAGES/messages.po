@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-29 14:29+0300\n"
+"POT-Creation-Date: 2018-11-03 15:14+0300\n"
 "PO-Revision-Date: 2018-08-23 01:00+0300\n"
 "Last-Translator: \n"
 "Language: ru\n"
@@ -23,10 +23,10 @@ msgstr ""
 msgid "Add news"
 msgstr "Добавить новость"
 
-#: app/SOP/forms.py:12 app/defectura/forms.py:9 app/edinfo/forms.py:12
-#: app/expdate/forms.py:14 app/expdate/forms.py:18 app/faq/forms.py:11
-#: app/forms.py:10 app/orders/forms.py:11 app/spravka/forms.py:13
-#: app/spravka/forms.py:20
+#: app/SOP/forms.py:12 app/chat/forms.py:12 app/defectura/forms.py:9
+#: app/edinfo/forms.py:12 app/expdate/forms.py:14 app/expdate/forms.py:18
+#: app/faq/forms.py:11 app/forms.py:10 app/orders/forms.py:11
+#: app/spravka/forms.py:13 app/spravka/forms.py:20
 msgid "Submit"
 msgstr "Отправить"
 
@@ -81,7 +81,7 @@ msgstr "Удалить запись"
 msgid "Edit post"
 msgstr "Редактировать запись"
 
-#: app/auth/forms.py:8
+#: app/auth/forms.py:8 app/chat/forms.py:10 app/chat/templates/chat.html:46
 msgid "Username"
 msgstr "Имя пользователя"
 
@@ -101,31 +101,43 @@ msgstr "Войти"
 msgid "Invalid username or password"
 msgstr "Неверные имя пользователя, или пароль"
 
+#: app/chat/forms.py:11
+msgid "Message"
+msgstr "Сообщение"
+
+#: app/chat/routes.py:14
+msgid "Chat"
+msgstr "Чат"
+
+#: app/chat/templates/chat.html:47
+msgid "Your message"
+msgstr "Ваше сообщение"
+
 #: app/defectura/forms.py:8 app/defectura/routes.py:22
 #: app/templates/base.html:35
 msgid "Defectura"
 msgstr "Дефектура"
 
-#: app/defectura/templates/defectura.html:23
+#: app/defectura/templates/defectura.html:32
 msgid "Defecture for"
 msgstr "Дефектура за"
 
-#: app/defectura/templates/defectura.html:36
+#: app/defectura/templates/defectura.html:45
 msgid "Drug Name"
 msgstr "Название лекарства"
 
-#: app/defectura/templates/defectura.html:37
+#: app/defectura/templates/defectura.html:46
 #: app/spravka/templates/drugstores.html:19
 #: app/spravka/templates/service_centres.html:17
 #: app/spravka/templates/spravka.html:20 app/spravka/templates/spravka.html:53
 msgid "Options"
 msgstr "Опции"
 
-#: app/defectura/templates/defectura.html:47
+#: app/defectura/templates/defectura.html:56
 msgid "Search in Google"
 msgstr "Искать в Google"
 
-#: app/defectura/templates/defectura.html:52
+#: app/defectura/templates/defectura.html:61
 msgid "Delete item"
 msgstr "Удалить позицию"
 
