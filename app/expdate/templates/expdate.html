@@ -80,9 +80,22 @@
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });
-    });
-    $('#clear_search_bar').click(function () {
-        $("#search_expdate_table").val('').focus();
+        $('#clear_search_bar').click(function () {
+            $("#search_expdate_table").val('').focus();
+            var value = $(this).val().toLowerCase();
+            $("#exp_date_table tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        })
+        $(document).keyup(function(e) {
+            if (e.key === "Escape") { // escape key maps to keycode `27`
+                $("#search_expdate_table").val('').focus();
+                var value = $(this).val().toLowerCase();
+                $("#exp_date_table tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            }
+        });
     });
 </script>
 <script src="{{ url_for('static', filename='js/bootstrap-confirm-delete.js') }}"></script>
@@ -95,8 +108,8 @@
 {% endblock %}
 
 {% block app_content %}
-    <input type="text" id="search_expdate_table", placeholder="{{ _l('Search...') }}">
-    <button class="btn btn-outline-primary" id="clear_search_bar">X</button>
+    <input type="text" id="search_expdate_table", placeholder="{{ _('Search...') }}">
+    <button class="btn btn-outline-primary" id="clear_search_bar" title="{{ _('Delete input. You can press ESC to clear input string') }}">X</button>
     <br><br>
     <table class="table">
         <tr>

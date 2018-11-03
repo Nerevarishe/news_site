@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-03 15:14+0300\n"
+"POT-Creation-Date: 2018-11-03 15:42+0300\n"
 "PO-Revision-Date: 2018-08-23 01:00+0300\n"
 "Last-Translator: \n"
 "Language: ru\n"
@@ -170,15 +170,15 @@ msgstr "Возникла непредвиденная ошибка"
 msgid "The administrator has been notified. Sorry for the inconvenience!"
 msgstr "Администратор уведомлён."
 
-#: app/expdate/forms.py:11 app/expdate/templates/expdate.html:103
+#: app/expdate/forms.py:11 app/expdate/templates/expdate.html:116
 msgid "Drug name"
 msgstr "Название лекарства"
 
-#: app/expdate/forms.py:12 app/expdate/templates/expdate.html:104
+#: app/expdate/forms.py:12 app/expdate/templates/expdate.html:117
 msgid "Exp. Date"
 msgstr "Срок годности"
 
-#: app/expdate/forms.py:13 app/expdate/templates/expdate.html:105
+#: app/expdate/forms.py:13 app/expdate/templates/expdate.html:118
 msgid "Amount"
 msgstr "Количество"
 
@@ -198,31 +198,35 @@ msgstr "Добавление препаратов с сроками"
 msgid "Upload Table"
 msgstr "Загрузить таблицу"
 
-#: app/expdate/templates/expdate.html:93
+#: app/expdate/templates/expdate.html:106
 msgid "Add Item"
 msgstr "Добавить позицию"
 
-#: app/expdate/templates/expdate.html:94
+#: app/expdate/templates/expdate.html:107
 msgid "Add Table"
 msgstr "Загрузить таблицу"
 
-#: app/expdate/templates/expdate.html:98
+#: app/expdate/templates/expdate.html:111
 msgid "Search..."
 msgstr "Поиск..."
 
-#: app/expdate/templates/expdate.html:106
+#: app/expdate/templates/expdate.html:112
+msgid "Delete input. You can press ESC to clear input string"
+msgstr "Очистить строку. Можно так же нажать ESC для очистки строки"
+
+#: app/expdate/templates/expdate.html:119
 msgid "Operations"
 msgstr "Операции"
 
-#: app/expdate/templates/expdate.html:117
+#: app/expdate/templates/expdate.html:130
 msgid "Increase amount"
 msgstr "Увеличить количество"
 
-#: app/expdate/templates/expdate.html:123
+#: app/expdate/templates/expdate.html:136
 msgid "Decrease amount"
 msgstr "Уменьшить количество"
 
-#: app/expdate/templates/expdate.html:130
+#: app/expdate/templates/expdate.html:143
 msgid "Delete row"
 msgstr "Удалить строку"
 
