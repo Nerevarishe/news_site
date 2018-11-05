@@ -14,6 +14,7 @@
     <script>
         $( document ).ready(function() {
             $( '#drug_name' ).val( '' ).focus();
+            $( '#comment' ).val( '' ).focus();
         });
     </script>
 {% endblock %}
@@ -43,11 +44,13 @@
                 <table class="table">
                     <tr>
                         <th>{{ _('Drug Name') }}</th>
+                        <th>{{ _('Comment') }}</th>
                         <th>{{ _('Options') }}</th>
                     </tr>
                     {% for item in list %}
                     <tr>
                         <td>{{ item.drug_name }}</td>
+                        <td>{{ item.comment }}</td>
                         <td>
                             <span class="float-right">
                                 <a target="_blank"
