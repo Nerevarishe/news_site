@@ -14,7 +14,7 @@
     <script>
         $( document ).ready(function() {
             $( '#drug_name' ).val( '' ).focus();
-            $( '#comment' ).val( '' ).focus();
+            $( '#comment' ).val( '' );
         });
     </script>
 {% endblock %}
@@ -27,7 +27,7 @@
         {{ wtf.quick_form(form) }}
     </div>
     <hr>
-    {% for date, list in defectura_cards | groupby('date') %}
+    {% for date, list in defectura_cards | groupby('date') | reverse %}
         <div class="card">
             <div class="card-header">
                 {{ _('Defecture for') }} {{ date.strftime('%d/%m/%Y') }}
