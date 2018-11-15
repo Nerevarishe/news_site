@@ -92,6 +92,9 @@ app.register_blueprint(spravka_bp, url_prefix='/spravka')
 from app.chat import bp as chat_bp
 app.register_blueprint(chat_bp, url_prefix='/chat')
 
+from app.schedule import bp as schedule_bp
+app.register_blueprint(schedule_bp, url_prefix='/schedule')
+
 
 # Babel module init
 @babel.localeselector

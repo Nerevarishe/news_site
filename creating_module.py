@@ -1,5 +1,6 @@
 import argparse
-import os, errno
+import os
+from errno import EEXIST
 
 
 # Парсим имя будущего модуля
@@ -14,14 +15,14 @@ directory = './app/' + module_name
 try:
     os.makedirs(directory)
 except OSError as e:
-    if e.errno != errno.EEXIST:
+    if e.errno != EEXIST:
         raise
 
 # Создаём директорию шаблонов модуля
 try:
     os.makedirs(directory + '/templates')
 except OSError as e:
-    if e.errno != errno.EEXIST:
+    if e.errno != EEXIST:
         raise
 
 # Создаём базовые файлы модуля
@@ -31,7 +32,6 @@ f.write("""from flask import Blueprint
 
 
 bp = Blueprint('""" + module_name + """', __name__, template_folder='templates')
-
 
 from app.""" + module_name + """ import forms, routes
 """)
@@ -43,14 +43,14 @@ f.write("""from flask import render_template, redirect, url_for
 from flask_login import login_required
 from flask_babel import _
 from app import db
-#from app.""" + module_name + """.forms import """ + module_name.capitalize() + """Form
-#from app.models import """ + module_name.capitalize() + """Post
+# from app.""" + module_name + """.forms import """ + module_name.capitalize() + """Form
+# from app.models import """ + module_name.capitalize() + """Post
 from app.""" + module_name + """ import bp
 
 
 @bp.route('/', methods=['GET', 'POST'])
 def """ + module_name + """():
-    #""" + module_name + """_posts = """ + module_name.capitalize() + """Post().query.order_by(""" + module_name.capitalize() + """Post.timestamp.desc()).all()
+    # """ + module_name + """_posts = """ + module_name.capitalize() + """Post().query.order_by(""" + module_name.capitalize() + """Post.timestamp.desc()).all()
     return render_template('""" + module_name + """.html', title=_('""" + module_name + """'))
 """)
 f.close()
@@ -73,8 +73,7 @@ f.close()
 
 # html page
 f = open(directory + '/templates/' + module_name + '.html', 'w')
-f.write('''
-{% extends "base.html" %}
+f.write('''{% extends "base.html" %}
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block action_menu %}

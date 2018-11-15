@@ -122,3 +122,20 @@ class ServiceCenterList(db.Model):
     def __repr__(self):
         return 'id: {}, brands: {}, sc_adress: {}, sc_phone: {}'.format(self.id, self.brands, self.sc_adress,
                                                                         self.sc_phone)
+
+
+class Employee(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    last_name = db.Column(db.String, index=True)
+    first_name = db.Column(db.String)
+    patronymic = db.Column(db.String)
+    is_active = db.Column(db.Boolean(), default=True)
+    preferred_time = db.Column(db.String)
+    work_hours_in_day = db.Column(db.String)
+
+    def __repr__(self):
+        return '''id: {}, {} {} {}
+        Preferred time: {}
+        Is Employee active: {}
+        Work hours in day: {}'''.format(self.id, self.last_name, self.firs_name, self.patronymic, self.preferred_time,
+                                         self.is_active, self.work_hours_in_day)

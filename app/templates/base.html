@@ -49,6 +49,15 @@
                            class="dropdown-item">{{ _('Service Centres') }}</a>
                     </div>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">{{ _('Schedule') }}</a>
+                    <div class="dropdown-menu">
+                        <a href="{{ url_for('schedule.schedule') }}"
+                           class="dropdown-item">{{ _('Schedule') }}</a>
+                        <a href="{{ url_for('schedule.employees') }}"
+                           class="dropdown-item">{{ _('Employees') }}</a>
+                    </div>
+                </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 {% if current_user.is_anonymous %}

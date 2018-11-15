@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-05 10:34+0000\n"
+"POT-Creation-Date: 2018-11-15 22:57+0300\n"
 "PO-Revision-Date: 2018-08-23 01:00+0300\n"
 "Last-Translator: \n"
 "Language: ru\n"
@@ -23,14 +23,14 @@ msgstr ""
 msgid "Add news"
 msgstr "Добавить новость"
 
-#: app/SOP/forms.py:12 app/chat/forms.py:12 app/defectura/forms.py:10
-#: app/edinfo/forms.py:12 app/expdate/forms.py:14 app/expdate/forms.py:18
+#: app/SOP/forms.py:11 app/chat/forms.py:10 app/defectura/forms.py:10
+#: app/edinfo/forms.py:11 app/expdate/forms.py:13 app/expdate/forms.py:17
 #: app/faq/forms.py:11 app/forms.py:10 app/orders/forms.py:11
-#: app/spravka/forms.py:13 app/spravka/forms.py:20
+#: app/schedule/forms.py:16 app/spravka/forms.py:13 app/spravka/forms.py:20
 msgid "Submit"
 msgstr "Отправить"
 
-#: app/routes.py:24 app/templates/base.html:23
+#: app/routes.py:23 app/templates/base.html:23
 msgid "Home"
 msgstr "Главная"
 
@@ -38,16 +38,16 @@ msgstr "Главная"
 msgid "Add News"
 msgstr "Добавить новость"
 
-#: app/SOP/forms.py:10 app/edinfo/forms.py:10 app/faq/forms.py:9
+#: app/SOP/forms.py:9 app/edinfo/forms.py:9 app/faq/forms.py:9
 #: app/orders/forms.py:9
 msgid "Title"
 msgstr "Заголовок"
 
-#: app/SOP/forms.py:11 app/templates/base.html:38
+#: app/SOP/forms.py:10 app/templates/base.html:38
 msgid "SOP"
 msgstr "СОП"
 
-#: app/SOP/routes.py:14
+#: app/SOP/routes.py:13
 msgid "Standard Operating Procedure"
 msgstr "Стандартная операционная процедура"
 
@@ -55,7 +55,7 @@ msgstr "Стандартная операционная процедура"
 msgid "Add SOP"
 msgstr "Добавить СОП"
 
-#: app/SOP/routes.py:42
+#: app/SOP/routes.py:44
 msgid "Edit SOP"
 msgstr "Редактировать СОП"
 
@@ -81,7 +81,7 @@ msgstr "Удалить запись"
 msgid "Edit post"
 msgstr "Редактировать запись"
 
-#: app/auth/forms.py:8 app/chat/forms.py:10 app/chat/templates/chat.html:46
+#: app/auth/forms.py:8 app/chat/forms.py:8 app/chat/templates/chat.html:46
 msgid "Username"
 msgstr "Имя пользователя"
 
@@ -101,11 +101,11 @@ msgstr "Войти"
 msgid "Invalid username or password"
 msgstr "Неверные имя пользователя, или пароль"
 
-#: app/chat/forms.py:11
+#: app/chat/forms.py:9
 msgid "Message"
 msgstr "Сообщение"
 
-#: app/chat/routes.py:14
+#: app/chat/routes.py:11
 msgid "Chat"
 msgstr "Чат"
 
@@ -131,9 +131,10 @@ msgid "Drug Name"
 msgstr "Название лекарства"
 
 #: app/defectura/templates/defectura.html:48
-#: app/spravka/templates/drugstores.html:19
-#: app/spravka/templates/service_centres.html:17
-#: app/spravka/templates/spravka.html:20 app/spravka/templates/spravka.html:53
+#: app/schedule/templates/employees.html:24
+#: app/spravka/templates/drugstores.html:50
+#: app/spravka/templates/service_centres.html:16
+#: app/spravka/templates/spravka.html:19 app/spravka/templates/spravka.html:52
 msgid "Options"
 msgstr "Опции"
 
@@ -145,16 +146,16 @@ msgstr "Искать в Google"
 msgid "Delete item"
 msgstr "Удалить позицию"
 
-#: app/edinfo/forms.py:11 app/faq/forms.py:10 app/faq/routes.py:16
+#: app/edinfo/forms.py:10 app/faq/forms.py:10 app/faq/routes.py:13
 #: app/orders/forms.py:10 app/templates/base.html:26
 msgid "FAQ"
 msgstr "ЧаВо"
 
-#: app/edinfo/routes.py:14 app/templates/base.html:41
+#: app/edinfo/routes.py:13 app/templates/base.html:41
 msgid "Education Information"
 msgstr "Учебная информация"
 
-#: app/edinfo/routes.py:30 app/edinfo/templates/articles_list.html:12
+#: app/edinfo/routes.py:31 app/edinfo/templates/articles_list.html:12
 msgid "Add article"
 msgstr "Добавить статью"
 
@@ -174,19 +175,19 @@ msgstr "Возникла непредвиденная ошибка"
 msgid "The administrator has been notified. Sorry for the inconvenience!"
 msgstr "Администратор уведомлён."
 
-#: app/expdate/forms.py:11 app/expdate/templates/expdate.html:116
+#: app/expdate/forms.py:10 app/expdate/templates/expdate.html:116
 msgid "Drug name"
 msgstr "Название лекарства"
 
-#: app/expdate/forms.py:12 app/expdate/templates/expdate.html:117
+#: app/expdate/forms.py:11 app/expdate/templates/expdate.html:117
 msgid "Exp. Date"
 msgstr "Срок годности"
 
-#: app/expdate/forms.py:13 app/expdate/templates/expdate.html:118
+#: app/expdate/forms.py:12 app/expdate/templates/expdate.html:118
 msgid "Amount"
 msgstr "Количество"
 
-#: app/expdate/forms.py:17
+#: app/expdate/forms.py:16
 msgid "Documents file"
 msgstr "Документы"
 
@@ -194,11 +195,11 @@ msgstr "Документы"
 msgid "Exp. Dates"
 msgstr "Сроки годности"
 
-#: app/expdate/routes.py:28
+#: app/expdate/routes.py:29
 msgid "Add Exp. Date"
 msgstr "Добавление препаратов с сроками"
 
-#: app/expdate/routes.py:49
+#: app/expdate/routes.py:51
 msgid "Upload Table"
 msgstr "Загрузить таблицу"
 
@@ -211,10 +212,12 @@ msgid "Add Table"
 msgstr "Загрузить таблицу"
 
 #: app/expdate/templates/expdate.html:111
+#: app/spravka/templates/drugstores.html:40
 msgid "Search..."
 msgstr "Поиск..."
 
 #: app/expdate/templates/expdate.html:112
+#: app/spravka/templates/drugstores.html:41
 msgid "Delete input. You can press ESC to clear input string"
 msgstr "Очистить строку. Можно так же нажать ESC для очистки строки"
 
@@ -234,7 +237,7 @@ msgstr "Уменьшить количество"
 msgid "Delete row"
 msgstr "Удалить строку"
 
-#: app/faq/routes.py:28 app/faq/templates/faq.html:26
+#: app/faq/routes.py:26 app/faq/templates/faq.html:26
 msgid "Add FAQ"
 msgstr "Добавить вопрос"
 
@@ -242,35 +245,93 @@ msgstr "Добавить вопрос"
 msgid "Orders"
 msgstr "Приказы"
 
-#: app/orders/routes.py:34 app/orders/templates/orders.html:19
+#: app/orders/routes.py:36 app/orders/templates/orders.html:19
 msgid "Add law"
 msgstr "Добавить приказ"
+
+#: app/schedule/forms.py:9
+msgid "Last Name:"
+msgstr "Фамилия:"
+
+#: app/schedule/forms.py:10
+msgid "First Name:"
+msgstr "Имя:"
+
+#: app/schedule/forms.py:11
+msgid "Patronymic:"
+msgstr "Отчество:"
+
+#: app/schedule/forms.py:12
+msgid "Activate Employee?"
+msgstr "Активировать сотрудника?"
+
+#: app/schedule/forms.py:13
+msgid "Preferred time:"
+msgstr "Желаемое время:"
+
+#: app/schedule/forms.py:13
+msgid "None"
+msgstr "-"
+
+#: app/schedule/forms.py:15
+msgid "Work hours in day:"
+msgstr "Рабочих часво в день:"
+
+#: app/schedule/routes.py:14
+msgid "schedule"
+msgstr "расписание"
+
+#: app/schedule/routes.py:22 app/templates/base.html:58
+msgid "Employees"
+msgstr "Сотрудник"
+
+#: app/schedule/routes.py:41 app/schedule/templates/employees.html:13
+msgid "Add Employee"
+msgstr "Добавить сотрудника"
+
+#: app/schedule/routes.py:65
+msgid "Edit Employee"
+msgstr "Редактировать сотрудника"
+
+#: app/schedule/templates/employees.html:21
+#: app/spravka/templates/drugstores.html:44
+#: app/spravka/templates/spravka.html:13
+msgid "Name"
+msgstr "Имя"
+
+#: app/schedule/templates/employees.html:22
+msgid "Preferred time"
+msgstr "Желаемое время"
+
+#: app/schedule/templates/employees.html:23
+msgid "Hours in day"
+msgstr "Часов в день"
 
 #: app/spravka/forms.py:8
 msgid "Drug Store"
 msgstr "Аптека"
 
 #: app/spravka/forms.py:9 app/spravka/forms.py:18
-#: app/spravka/templates/drugstores.html:14
-#: app/spravka/templates/service_centres.html:14
-#: app/spravka/templates/spravka.html:15 app/spravka/templates/spravka.html:50
+#: app/spravka/templates/drugstores.html:45
+#: app/spravka/templates/service_centres.html:13
+#: app/spravka/templates/spravka.html:14 app/spravka/templates/spravka.html:49
 msgid "Adress"
 msgstr "Адрес"
 
-#: app/spravka/forms.py:10 app/spravka/templates/drugstores.html:15
-#: app/spravka/templates/spravka.html:16
+#: app/spravka/forms.py:10 app/spravka/templates/drugstores.html:46
+#: app/spravka/templates/spravka.html:15
 msgid "Work Time"
 msgstr "Время работы"
 
 #: app/spravka/forms.py:11 app/spravka/forms.py:19
-#: app/spravka/templates/drugstores.html:16
-#: app/spravka/templates/service_centres.html:15
-#: app/spravka/templates/spravka.html:17 app/spravka/templates/spravka.html:51
+#: app/spravka/templates/drugstores.html:47
+#: app/spravka/templates/service_centres.html:14
+#: app/spravka/templates/spravka.html:16 app/spravka/templates/spravka.html:50
 msgid "Phone"
 msgstr "Телефон"
 
-#: app/spravka/forms.py:12 app/spravka/templates/drugstores.html:17
-#: app/spravka/templates/spravka.html:18
+#: app/spravka/forms.py:12 app/spravka/templates/drugstores.html:48
+#: app/spravka/templates/spravka.html:17
 msgid "IP Phone"
 msgstr "IP Телефон"
 
@@ -282,8 +343,8 @@ msgstr "Брэнды"
 msgid "Drugstores"
 msgstr "Аптеки"
 
-#: app/spravka/routes.py:29 app/spravka/templates/drugstores.html:6
-#: app/spravka/templates/spravka.html:6
+#: app/spravka/routes.py:29 app/spravka/templates/drugstores.html:35
+#: app/spravka/templates/spravka.html:5
 msgid "Add Drugstore"
 msgstr "Добавить аптеку"
 
@@ -303,28 +364,23 @@ msgstr "Добавить новый СЦ"
 msgid "Edit Service Center"
 msgstr "Редактировать СЦ"
 
-#: app/spravka/templates/drugstores.html:10
-#: app/spravka/templates/spravka.html:11
+#: app/spravka/templates/drugstores.html:39
+#: app/spravka/templates/spravka.html:10
 msgid "Drugstore adresses"
 msgstr "Адреса аптек"
 
-#: app/spravka/templates/drugstores.html:13
-#: app/spravka/templates/spravka.html:14
-msgid "Name"
-msgstr "Имя"
-
-#: app/spravka/templates/service_centres.html:6
-#: app/spravka/templates/spravka.html:7
+#: app/spravka/templates/service_centres.html:5
+#: app/spravka/templates/spravka.html:6
 msgid "Add Service Center"
 msgstr "Добавить СЦ"
 
-#: app/spravka/templates/service_centres.html:10
-#: app/spravka/templates/spravka.html:46
+#: app/spravka/templates/service_centres.html:9
+#: app/spravka/templates/spravka.html:45
 msgid "Service Center Adresses"
 msgstr "Адреса СЦ"
 
-#: app/spravka/templates/service_centres.html:13
-#: app/spravka/templates/spravka.html:49
+#: app/spravka/templates/service_centres.html:12
+#: app/spravka/templates/spravka.html:48
 msgid "Brands Name"
 msgstr "Брэнды"
 
@@ -340,11 +396,15 @@ msgstr "Добро пожаловать"
 msgid "Reference Information"
 msgstr "Справочная информация"
 
-#: app/templates/base.html:56
+#: app/templates/base.html:53 app/templates/base.html:56
+msgid "Schedule"
+msgstr "Расписание"
+
+#: app/templates/base.html:65
 msgid "Login"
 msgstr "Войти"
 
-#: app/templates/base.html:63
+#: app/templates/base.html:72
 msgid "Logout"
 msgstr "Выйти"
 

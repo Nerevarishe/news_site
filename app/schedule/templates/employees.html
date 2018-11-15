@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+      crossorigin="anonymous">
+{% endblock %}
+
+{% block action_menu %}
+    <a href="{{ url_for('schedule.add_employee') }}" class="btn btn-outline-primary">{{ _('Add Employee') }}</a>
+{% endblock %}
+
+{% block app_content %}
+    Employees
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>{{ _('Name') }}</th>
+                <th>{{ _('Preferred time') }}</th>
+                <th>{{ _('Hours in day') }}</th>
+                <th>{{ _('Options') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+                <tr>
+                    <td>{{ employee.last_name + ' ' + employee.first_name[0] + '.' + employee.patronymic[0] + '.'}}</td>
+                    <td>{{ employee.preferred_time }}</td>
+                    <td>{{ employee.work_hours_in_day }}</td>
+                    <td>
+                        <a href="{{ url_for('schedule.edit_employee', id=employee.id) }}"
+                            class="btn btn-outline-primary">
+                                <i class="fas fa-user-edit"></i>
+                        </a>
+                        <a href="{{ url_for('schedule.deactivate_employee', id=employee.id) }}"
+                            class="btn btn-outline-primary">
+                                <i class="fas fa-user-times"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+{% endblock %}
