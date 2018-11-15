@@ -4,9 +4,11 @@ from app import db, login
 from flask_login import UserMixin
 from datetime import datetime, date
 
+
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
+
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -24,6 +26,7 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
+
 class News(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String)
@@ -33,6 +36,7 @@ class News(db.Model):
     def __repr__(self):
         return 'Post: {}'.format(self.body)
 
+
 class FaqPost(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String)
@@ -41,7 +45,8 @@ class FaqPost(db.Model):
     
     def __repr__(self):
         return 'Title: {}, Post: {}'.format(self.title, self.body)
-        
+
+
 class LawPost(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String)
@@ -50,7 +55,8 @@ class LawPost(db.Model):
     
     def __repr__(self):
         return 'Title: {}, Post: {}'.format(self.title, self.body)
-    
+
+
 class ExpdateTable(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     drug_name = db.Column(db.String)
@@ -60,7 +66,8 @@ class ExpdateTable(db.Model):
     
     def __repr__(self):
         return 'Drug Name: {}\n Exp. Date: {}\n amount: {}'.format(self.drug_name, self.exp_date, self.amount)
-    
+
+
 class SOPPost(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String)
@@ -69,7 +76,8 @@ class SOPPost(db.Model):
     
     def __repr__(self):
         return 'Title: {}, Post: {}'.format(self.title, self.body)
-    
+
+
 class EdinfoPost(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String)
@@ -78,7 +86,8 @@ class EdinfoPost(db.Model):
     
     def __repr__(self):
         return 'Title: {}, Post: {}'.format(self.title, self.body)
-    
+
+
 class DefecturaCard(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     drug_name = db.Column(db.String)
@@ -89,6 +98,7 @@ class DefecturaCard(db.Model):
     
     def __repr__(self):
         return 'Drug name: {}, date: {}'.format(self.drug_name, self.date)
+
 
 class DrugstoreList(db.Model):
     id = db.Column(db.Integer, primary_key=True)

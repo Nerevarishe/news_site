@@ -41,7 +41,8 @@ class AdminView(ModelView):
     def inaccessible_callback(self, name, **kwargs):
         # redirect to login page if user doesn't have access
         return redirect(url_for('auth.login', next=request.url))
-    
+
+
 class MyAdminIndexView(AdminIndexView):
 
     @expose('/')
@@ -49,7 +50,8 @@ class MyAdminIndexView(AdminIndexView):
         if not current_user.is_authenticated:
             return redirect(url_for('auth.login'))
         return super(MyAdminIndexView, self).index()
-    
+
+
 admin.add_view(AdminView(User, db.session))
 admin.add_view(AdminView(News, db.session))
 admin.add_view(AdminView(FaqPost, db.session))
@@ -95,6 +97,7 @@ app.register_blueprint(chat_bp, url_prefix='/chat')
 @babel.localeselector
 def get_locale():
     return request.accept_languages.best_match(app.config['LANGUAGES'])
+
 
 if not app.debug:
     # E-mail configuration

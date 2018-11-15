@@ -16,6 +16,7 @@ def expdate():
     form = ExpdateAddItemForm()
     return render_template('expdate.html', title=_('Exp. Dates'), expdate_table=expdate_table)
 
+
 @bp.route('/add_exp_date', methods=['GET', 'POST'])
 @login_required
 def add_exp_date():
@@ -26,6 +27,7 @@ def add_exp_date():
         db.session.commit()
         return redirect(url_for('expdate.expdate'))
     return render_template('add_exp_date.html', title=_('Add Exp. Date'), form=form)
+
 
 @bp.route('/upload_table', methods=['GET', 'POST'])
 def upload_table():
@@ -57,13 +59,15 @@ def del_exp_date(row_id):
     db.session.commit()
     return redirect(url_for('expdate.expdate'))
 
+
 @bp.route('/_inc_amount/<row_id>', methods=['POST'])
 def _inc_amount(row_id):
     row_id = ExpdateTable.query.filter_by(id=row_id).first()
     row_id.amount += 1
     db.session.commit()
     return json.dumps({'amount': row_id.amount})
-    
+
+
 @bp.route('/_dec_amount/<row_id>', methods=['POST'])
 def _dec_amount(row_id):
     row_id = ExpdateTable.query.filter_by(id=row_id).first()

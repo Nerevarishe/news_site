@@ -1,4 +1,3 @@
-
 from flask import render_template, redirect, url_for
 from flask_login import login_required
 from flask_babel import _
@@ -13,6 +12,7 @@ def SOP_list():
     SOP_posts = SOPPost().query.order_by(SOPPost.timestamp.desc()).all()
     return render_template('SOP_list.html', title=_('Standard Operating Procedure'), SOP_posts=SOP_posts)
 
+
 @bp.route('/add_SOP', methods=['GET', 'POST'])
 @login_required
 def add_SOP():
@@ -24,10 +24,12 @@ def add_SOP():
         return redirect(url_for('SOP.SOP_list'))
     return render_template('add_SOP.html', title=_('Add SOP'), form=form)
 
+
 @bp.route('/SOP/<SOP_id>')
 def SOP(SOP_id):
     SOP = SOPPost.query.filter_by(id=SOP_id).first()
     return render_template('SOP.html', title=SOP.title, SOP=SOP)
+
 
 @bp.route('/edit_SOP/<SOP_id>', methods=['GET', 'POST'])
 @login_required
@@ -40,7 +42,8 @@ def edit_SOP(SOP_id):
         db.session.commit()
         return redirect(url_for('SOP.SOP_list'))
     return render_template('add_SOP.html', title=_('Edit SOP'), form=form)
-    
+
+
 @bp.route('/delete_SOP/<SOP_id>')
 @login_required
 def delete_SOP(SOP_id):

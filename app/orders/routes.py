@@ -10,16 +10,18 @@ from app.orders import bp
 
 #############################################
 # Orders section
-###    
+#
 @bp.route('/', methods=['GET', 'POST'])
 def orders():
     law_posts = LawPost().query.order_by(LawPost.timestamp.desc()).all()
     return render_template('orders.html', title=_('Orders'), law_posts=law_posts)
 
+
 @bp.route('/law/<law_id>')
 def law(law_id):
     law = LawPost().query.filter_by(id=law_id).first()
     return render_template('law.html', title=law.title, law=law)
+
 
 @bp.route('/add_law', methods=['GET', 'POST'])
 @login_required
@@ -33,6 +35,7 @@ def add_law():
         return redirect(url_for('orders.orders'))
     return render_template('add_law.html', title=_('Add law'), form=form)
 
+
 @bp.route('/del_law/<law_id>')
 @login_required
 def del_law(law_id):
@@ -40,7 +43,8 @@ def del_law(law_id):
     db.session.delete(delete_law_id)
     db.session.commit()
     return redirect(url_for('orders.orders'))
-    
+
+
 @bp.route('/edit_law/<law_id>', methods=['GET', 'POST'])
 @login_required
 def edit_law(law_id):

@@ -10,7 +10,6 @@ from app.forms import NewsForm
 from app.models import News
 
 
-
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index')
 def index():
@@ -24,6 +23,7 @@ def index():
     return render_template('index.html', title=_('Home'), news=news.items,
                             next_url=next_url, prev_url=prev_url)
 
+
 @app.route('/add_news', methods=['GET', 'POST'])
 @login_required
 def add_news():
@@ -35,6 +35,7 @@ def add_news():
         news_id = news.id
         return redirect(url_for('index'))
     return render_template('add_news.html', title=_('Add News'), form=form)
+
 
 @app.route('/files/<filename>')
 def uploaded_files(filename):
@@ -52,6 +53,7 @@ def upload():
     url = url_for('uploaded_files', filename=f.filename)
     return upload_success(url=url)
 
+
 @app.route('/del_news/<news_id>')
 @login_required
 def del_news(news_id):
@@ -59,6 +61,7 @@ def del_news(news_id):
     db.session.delete(delete_news_id)
     db.session.commit()
     return redirect(url_for('index'))
+
 
 @app.route('/edit_news/<news_id>', methods=['GET', 'POST'])
 @login_required
@@ -70,6 +73,7 @@ def edit_news(news_id):
         db.session.commit()
         return redirect(url_for('index'))
     return render_template('add_news.html', form=form)
+
 
 @app.before_request
 def before_request():

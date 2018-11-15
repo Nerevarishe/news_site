@@ -1,9 +1,8 @@
-
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed, FileRequired    
 from wtforms import StringField, DateField, SubmitField
 from wtforms.validators import DataRequired
-from app import documents
+# from app import documents
 from flask_babel import lazy_gettext as _l
 
     
