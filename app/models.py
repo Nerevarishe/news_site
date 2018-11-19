@@ -132,6 +132,7 @@ class Employee(db.Model):
     is_active = db.Column(db.Boolean(), default=True)
     preferred_time = db.Column(db.String)
     work_hours_in_day = db.Column(db.String)
+    shift = db.Column(db.Integer, db.ForeignKey('shift.id'))
 
     def __repr__(self):
         return '''id: {}, {} {} {}
@@ -139,3 +140,40 @@ class Employee(db.Model):
         Is Employee active: {}
         Work hours in day: {}'''.format(self.id, self.last_name, self.firs_name, self.patronymic, self.preferred_time,
                                          self.is_active, self.work_hours_in_day)
+
+
+class Schedule(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    year = db.Column(db.String)
+    month = db.Column(db.String)
+    employee_id = db.Column(db.Integer, db.ForeignKey('employee.id'))
+    hours_in_month = db.Column(db.Integer)
+    vacation_days = db.Column(db.Integer)
+    vacation_start_date = db.Column(db.DateTime)
+    vacation_end_date = db.Column(db.DateTime)
+    
+    def __repr__(self):
+        return '''year: {}
+        month: {}
+        employee: {}
+        hours in month: {}
+        vacation days: {}
+        vacation start date: {}
+        vacation end date: {}''' \
+        .format(self.year, self.month,
+                Employee.query.filter_by(id=self.employee_id).first().last_name,
+                self.hours_in_month, self.vacation_days, self.vacation_start_date,
+                self.vacation_end_date)
+    
+    
+class Shift(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    shift_name = db.Column(db.String)
+    comment = db.Column(db.String)
+    employees = db.relationship('Employee', backref='shift_', lazy='dynamic')
+
+    def __repr__(self):
+        return '''Shift: {}
+        Comment: {}
+        Employees: {}
+        '''.format(self.shift_name, self.comment, self.employees)

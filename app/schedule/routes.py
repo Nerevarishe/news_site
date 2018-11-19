@@ -69,3 +69,21 @@ def edit_employee(id):
 @login_required
 def deactivate_employee(id):
     pass
+
+
+@bp.route('/add_schedule')
+@login_required
+def add_schedule():
+    return render_template('add_schedule.html', title=_('Add Schedule'))
+    
+
+@bp.route('/edit_schedule/<id>')
+@login_required
+def edit_schedule(id):
+    pass
+
+
+@bp.route('/delete_schedule/<id>')
+@login_required
+def delete_schedule(id):
+    pass
