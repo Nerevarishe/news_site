@@ -15,7 +15,11 @@ def defectura():
         date = datetime.utcnow()
         date = date.date()
         ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
-        add_string = DefecturaCard(drug_name=form.drug_name.data, comment=form.comment.data, date=date, ip=ip)
+        add_string = DefecturaCard(drug_name=form.drug_name.data,
+                                   comment=form.comment.data,
+                                   employee_name=form.employee_name.data,
+                                   date=date,
+                                   ip=ip)
         db.session.add(add_string)
         db.session.commit()
     defectura_cards = DefecturaCard().query.order_by(DefecturaCard.date).all()

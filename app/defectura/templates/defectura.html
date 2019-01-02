@@ -45,12 +45,14 @@
                     <tr>
                         <th>{{ _('Drug Name') }}</th>
                         <th>{{ _('Comment') }}</th>
+                        <th>{{ _('Employee Name') }}</th>
                         <th>{{ _('Options') }}</th>
                     </tr>
                     {% for item in list %}
                     <tr>
                         <td>{{ item.drug_name }}</td>
                         <td>{{ item.comment }}</td>
+                        <td>{{ item.employee_name }}</td>
                         <td>
                             <span class="float-right">
                                 <a target="_blank"

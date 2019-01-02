@@ -92,6 +92,7 @@ class DefecturaCard(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     drug_name = db.Column(db.String)
     comment = db.Column(db.String)
+    employee_name = db.Column(db.String)
     date = db.Column(db.Date, index=True)
     ip = db.Column(db.String)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
