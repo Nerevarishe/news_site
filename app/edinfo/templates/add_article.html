@@ -16,4 +16,6 @@
             {{ wtf.quick_form(form) }}
         </div>
     </div>
+    {{ ckeditor.load(pkg_type='full') }}
+    {{ ckeditor.config(name='body') }}
 {% endblock %}
