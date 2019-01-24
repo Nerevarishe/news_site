@@ -1,8 +1,7 @@
-from flask import request
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db, login
 from flask_login import UserMixin
-from datetime import datetime, date
+from datetime import datetime
 
 
 @login.user_loader
@@ -83,7 +82,7 @@ class EdinfoPost(db.Model):
     title = db.Column(db.String)
     body = db.Column(db.String)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-    
+
     def __repr__(self):
         return 'Title: {}, Post: {}'.format(self.title, self.body)
 
