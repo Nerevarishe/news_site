@@ -13,7 +13,10 @@
         <!-- Header -->
 {% block navbar %}
     <nav class="navbar navbar-expand-sm bg-light navbar-light">
-        <a class="navbar-brand" href="{{ url_for('index') }}">{{ _('News Site') }}</a>
+{#        <a class="navbar-brand" href="{{ url_for('index') }}">{{ _('News Site') }}</a>#}
+        <a class="navbar-brand" href="{{ url_for('index') }}">
+            <img src="/static/img/logo_vista.png" alt="logo" style="width: 120px;">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
