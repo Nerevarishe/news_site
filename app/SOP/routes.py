@@ -23,8 +23,8 @@ def add_SOP():
         db.session.commit()
         if form.add_to_news.data is True:
             news = News(
-                body=_('Added new SOP:') + '<br><a href="' + url_for('SOP.SOP', SOP_id=sop.id, _external=True) + '">'
-                     + form.title.data + '</a>'
+                body=_('Added new SOP:') + '<br><a href="' + url_for('SOP.SOP', SOP_id=sop.id, _external=True) + '">' + form.title.data + '</a>',
+                source='SOP-' + str(sop.id)
             )
             db.session.add(news)
             db.session.commit()
@@ -49,8 +49,8 @@ def edit_SOP(SOP_id):
         db.session.commit()
         if form.add_to_news.data is True:
             news = News(
-                body=_('SOP is updated') + '<br><a href="' + url_for('SOP.SOP', SOP_id=edit_SOP_id.id, _external=True) + '">' +
-                     form.title.data + '</a>'
+                body=_('SOP is updated') + '<br><a href="' + url_for('SOP.SOP', SOP_id=edit_SOP_id.id, _external=True) + '">' + form.title.data + '</a>',
+                source='SOP-' + str(edit_SOP_id.id)
             )
             db.session.add(news)
             db.session.commit()
@@ -62,6 +62,10 @@ def edit_SOP(SOP_id):
 @login_required
 def delete_SOP(SOP_id):
     delete_SOP_id = SOPPost.query.filter_by(id=SOP_id).first()
+    find_news = News.query.filter_by(source='SOP-' + str(delete_SOP_id.id)).all()
+    for post in find_news:
+        db.session.delete(post)
+        db.session.commit()
     db.session.delete(delete_SOP_id)
     db.session.commit()
     return redirect(url_for('SOP.SOP_list'))

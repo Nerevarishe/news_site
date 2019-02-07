@@ -32,8 +32,9 @@ def add_law():
         db.session.commit()
         if form.add_to_news.data is True:
             news = News(
-                body=_l('Added new order') + '<br><a href="' + url_for('orders.law', law_id=law.id, _external=True)
-                     + '">' + form.title.data + '</a>'
+                body=_('Added new order') + '<br><a href="' + url_for('orders.law', law_id=law.id, _external=True)
+                     + '">' + form.title.data + '</a>',
+                source='ORD-' + str(law.id)
             )
             db.session.add(news)
             db.session.commit()
@@ -45,6 +46,10 @@ def add_law():
 @login_required
 def del_law(law_id):
     delete_law_id = LawPost.query.filter_by(id=law_id).first()
+    find_news = News.query.filter_by(source='ORD-' + str(delete_law_id.id)).all()
+    for post in find_news:
+        db.session.delete(post)
+        db.session.commit()
     db.session.delete(delete_law_id)
     db.session.commit()
     return redirect(url_for('orders.orders'))
@@ -61,8 +66,8 @@ def edit_law(law_id):
         db.session.commit()
         if form.add_to_news.data is True:
             news = News(
-                body=_l('Order updated:') + '<br><a href="' + url_for('orders.law', law_id=edit_law_id.id, _external=True)
-                     + '">' + form.title.data + '</a>'
+                body=_('Order updated:') + '<br><a href="' + url_for('orders.law', law_id=edit_law_id.id, _external=True) + '">' + form.title.data + '</a>',
+                source='ORD-' + str(edit_law_id.id)
             )
             db.session.add(news)
             db.session.commit()

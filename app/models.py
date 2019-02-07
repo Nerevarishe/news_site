@@ -29,6 +29,8 @@ class User(UserMixin, db.Model):
 class News(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String)
+    # Источник новости. ORD-<id> при создании новости из модуля приказов, SOP-<id> - из модуля СОПов.
+    source = db.Column(db.String, index=True)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
