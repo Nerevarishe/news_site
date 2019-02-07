@@ -3,7 +3,7 @@ from flask_login import login_required
 from flask_babel import _
 from app import db
 from app.SOP.forms import SOPForm
-from app.models import SOPPost
+from app.models import News, SOPPost
 from app.SOP import bp
 
 
@@ -21,6 +21,13 @@ def add_SOP():
         sop = SOPPost(title=form.title.data, body=form.body.data)
         db.session.add(sop)
         db.session.commit()
+        if form.add_to_news.data is True:
+            news = News(
+                body=_('Added new SOP:') + '<br><a href="' + url_for('SOP.SOP', SOP_id=sop.id, _external=True) + '">'
+                     + form.title.data + '</a>'
+            )
+            db.session.add(news)
+            db.session.commit()
         return redirect(url_for('SOP.SOP_list'))
     return render_template('add_SOP.html', title=_('Add SOP'), form=form)
 
@@ -40,6 +47,13 @@ def edit_SOP(SOP_id):
         edit_SOP_id.title = form.title.data
         edit_SOP_id.body = form.body.data
         db.session.commit()
+        if form.add_to_news.data is True:
+            news = News(
+                body=_('SOP is updated') + '<br><a href="' + url_for('SOP.SOP', SOP_id=edit_SOP_id.id, _external=True) + '">' +
+                     form.title.data + '</a>'
+            )
+            db.session.add(news)
+            db.session.commit()
         return redirect(url_for('SOP.SOP_list'))
     return render_template('add_SOP.html', title=_('Edit SOP'), form=form)
 

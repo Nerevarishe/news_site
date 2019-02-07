@@ -1,4 +1,4 @@
-from app import app, db
+from app import app, db, cli  # Do NOT remove cli import!!!
 from app.models import User, News
 
 

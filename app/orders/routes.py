@@ -1,10 +1,9 @@
 from flask import render_template, redirect, url_for
-from flask import request
 from flask_login import login_required
 from flask_babel import _
 from app import db
 from app.orders.forms import LawForm
-from app.models import LawPost
+from app.models import News, LawPost
 from app.orders import bp
 
 
@@ -31,7 +30,13 @@ def add_law():
         law = LawPost(title=form.title.data, body=form.body.data)
         db.session.add(law)
         db.session.commit()
-        law_id = law.id
+        if form.add_to_news.data is True:
+            news = News(
+                body=_l('Added new order') + '<br><a href="' + url_for('orders.law', law_id=law.id, _external=True)
+                     + '">' + form.title.data + '</a>'
+            )
+            db.session.add(news)
+            db.session.commit()
         return redirect(url_for('orders.orders'))
     return render_template('add_law.html', title=_('Add law'), form=form)
 
@@ -54,5 +59,12 @@ def edit_law(law_id):
         edit_law_id.title = form.title.data
         edit_law_id.body = form.body.data
         db.session.commit()
+        if form.add_to_news.data is True:
+            news = News(
+                body=_l('Order updated:') + '<br><a href="' + url_for('orders.law', law_id=edit_law_id.id, _external=True)
+                     + '">' + form.title.data + '</a>'
+            )
+            db.session.add(news)
+            db.session.commit()
         return redirect(url_for('orders.orders'))
     return render_template('add_law.html', form=form)

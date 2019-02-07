@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-02 10:41+0300\n"
+"POT-Creation-Date: 2019-02-07 12:44+0300\n"
 "PO-Revision-Date: 2018-08-23 01:00+0300\n"
 "Last-Translator: \n"
 "Language: ru\n"
@@ -23,14 +23,14 @@ msgstr ""
 msgid "Add news"
 msgstr "Добавить новость"
 
-#: app/SOP/forms.py:11 app/chat/forms.py:10 app/defectura/forms.py:11
+#: app/SOP/forms.py:12 app/chat/forms.py:10 app/defectura/forms.py:11
 #: app/edinfo/forms.py:11 app/expdate/forms.py:13 app/expdate/forms.py:17
-#: app/faq/forms.py:11 app/forms.py:10 app/orders/forms.py:11
+#: app/faq/forms.py:11 app/forms.py:10 app/orders/forms.py:12
 #: app/schedule/forms.py:16 app/spravka/forms.py:13 app/spravka/forms.py:20
 msgid "Submit"
 msgstr "Отправить"
 
-#: app/routes.py:23 app/templates/base.html:23
+#: app/routes.py:23 app/templates/base.html:26
 msgid "Home"
 msgstr "Главная"
 
@@ -43,19 +43,31 @@ msgstr "Добавить новость"
 msgid "Title"
 msgstr "Заголовок"
 
-#: app/SOP/forms.py:10 app/templates/base.html:38
+#: app/SOP/forms.py:10 app/templates/base.html:41
 msgid "SOP"
 msgstr "СОП"
+
+#: app/SOP/forms.py:11 app/orders/forms.py:11
+msgid "Add link on news page?"
+msgstr "Добавить ссылку на странице новостей?"
 
 #: app/SOP/routes.py:13
 msgid "Standard Operating Procedure"
 msgstr "Стандартная операционная процедура"
 
-#: app/SOP/routes.py:25 app/SOP/templates/SOP_list.html:12
+#: app/SOP/routes.py:26
+msgid "Added new SOP:"
+msgstr "Добавлен новый СОП"
+
+#: app/SOP/routes.py:32 app/SOP/templates/SOP_list.html:12
 msgid "Add SOP"
 msgstr "Добавить СОП"
 
-#: app/SOP/routes.py:44
+#: app/SOP/routes.py:52
+msgid "SOP is updated"
+msgstr "СОП обновлён:"
+
+#: app/SOP/routes.py:58
 msgid "Edit SOP"
 msgstr "Редактировать СОП"
 
@@ -114,7 +126,7 @@ msgid "Your message"
 msgstr "Ваше сообщение"
 
 #: app/defectura/forms.py:8 app/defectura/routes.py:26
-#: app/templates/base.html:35
+#: app/templates/base.html:38
 msgid "Defectura"
 msgstr "Дефектура"
 
@@ -151,11 +163,11 @@ msgid "Delete item"
 msgstr "Удалить позицию"
 
 #: app/edinfo/forms.py:10 app/faq/forms.py:10 app/faq/routes.py:13
-#: app/orders/forms.py:10 app/templates/base.html:26
+#: app/orders/forms.py:10 app/templates/base.html:29
 msgid "FAQ"
 msgstr "ЧаВо"
 
-#: app/edinfo/routes.py:13 app/templates/base.html:41
+#: app/edinfo/routes.py:13 app/templates/base.html:44
 msgid "Education Information"
 msgstr "Учебная информация"
 
@@ -195,7 +207,7 @@ msgstr "Количество"
 msgid "Documents file"
 msgstr "Документы"
 
-#: app/expdate/routes.py:17 app/templates/base.html:32
+#: app/expdate/routes.py:17 app/templates/base.html:35
 msgid "Exp. Dates"
 msgstr "Сроки годности"
 
@@ -245,13 +257,21 @@ msgstr "Удалить строку"
 msgid "Add FAQ"
 msgstr "Добавить вопрос"
 
-#: app/orders/routes.py:17 app/templates/base.html:29
+#: app/orders/routes.py:16 app/templates/base.html:32
 msgid "Orders"
 msgstr "Приказы"
 
-#: app/orders/routes.py:36 app/orders/templates/orders.html:19
+#: app/orders/routes.py:35
+msgid "Added new order"
+msgstr "Добавлен новый приказ:"
+
+#: app/orders/routes.py:41 app/orders/templates/orders.html:19
 msgid "Add law"
 msgstr "Добавить приказ"
+
+#: app/orders/routes.py:64
+msgid "Order updated:"
+msgstr "Приказ обновлён:"
 
 #: app/schedule/forms.py:9
 msgid "Last Name:"
@@ -285,7 +305,7 @@ msgstr "Рабочих часво в день:"
 msgid "schedule"
 msgstr "расписание"
 
-#: app/schedule/routes.py:22 app/templates/base.html:58
+#: app/schedule/routes.py:22
 msgid "Employees"
 msgstr "Сотрудник"
 
@@ -347,7 +367,7 @@ msgstr "IP Телефон"
 msgid "Brands"
 msgstr "Брэнды"
 
-#: app/spravka/routes.py:13 app/templates/base.html:47
+#: app/spravka/routes.py:13 app/templates/base.html:50
 msgid "Drugstores"
 msgstr "Аптеки"
 
@@ -360,7 +380,7 @@ msgstr "Добавить аптеку"
 msgid "Edit Drugstore Info"
 msgstr "Редактировать аптеку"
 
-#: app/spravka/routes.py:64 app/templates/base.html:49
+#: app/spravka/routes.py:64 app/templates/base.html:52
 msgid "Service Centres"
 msgstr "Сервисные центры"
 
@@ -392,7 +412,7 @@ msgstr "Адреса СЦ"
 msgid "Brands Name"
 msgstr "Брэнды"
 
-#: app/templates/base.html:4 app/templates/base.html:16
+#: app/templates/base.html:4
 msgid "News Site"
 msgstr "Новостной сайт"
 
@@ -400,19 +420,15 @@ msgstr "Новостной сайт"
 msgid "Welcome to News Site"
 msgstr "Добро пожаловать"
 
-#: app/templates/base.html:44
+#: app/templates/base.html:47
 msgid "Reference Information"
 msgstr "Справочная информация"
 
-#: app/templates/base.html:53 app/templates/base.html:56
-msgid "Schedule"
-msgstr "Расписание"
-
-#: app/templates/base.html:65
+#: app/templates/base.html:68
 msgid "Login"
 msgstr "Войти"
 
-#: app/templates/base.html:72
+#: app/templates/base.html:75
 msgid "Logout"
 msgstr "Выйти"
 
@@ -423,4 +439,7 @@ msgstr "Новые записи"
 #: app/templates/index.html:41
 msgid "Older posts"
 msgstr "Старые записи"
+
+#~ msgid "Schedule"
+#~ msgstr "Расписание"
 
