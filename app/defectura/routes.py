@@ -1,5 +1,5 @@
-from flask import render_template, redirect, url_for, request
-from flask_login import login_required
+from flask import render_template, redirect, url_for, request, abort
+from flask_login import login_required, current_user
 from flask_babel import _
 from app import db
 from app.defectura.forms import DefecturaForm
@@ -24,11 +24,53 @@ def defectura():
         db.session.commit()
     defectura_cards = DefecturaCard().query.order_by(DefecturaCard.date).all()
     return render_template('defectura.html', title=_('Defectura'), form=form, defectura_cards=defectura_cards)
-    
+
+
+@bp.route('edit_item/<id>', methods=['GET', 'POST'])
+def edit_item(id):
+    ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+    query = DefecturaCard.query.filter_by(id=id).first()
+    # TODO: Переписать условия проверки на питоне:
+    if query.ip != str(ip):
+        if current_user.is_authenticated:
+            if current_user.username == 'admin':
+                pass
+            else:
+                return abort(403)
+        elif current_user.is_anonymous:
+            return abort(403)
+
+    form = DefecturaForm(drug_name=query.drug_name,
+                         comment=query.comment,
+                         employee_name=query.employee_name)
+    if form.validate_on_submit():
+        date = datetime.utcnow()
+        date = date.date()
+        query.drug_name = form.drug_name.data
+        query.comment = form.comment.data
+        query.employee_name = form.employee_name.data
+        query.date = date
+        query.ip = ip
+        db.session.commit()
+        return redirect(url_for('defectura.defectura'))
+    defectura_cards = DefecturaCard().query.order_by(DefecturaCard.date).all()
+    return render_template('defectura_edit.html', title=_('Defectura'), form=form, defectura_cards=defectura_cards)
+
 
 @bp.route('del_item/<id>')
 def del_item(id):
+    ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
     query = DefecturaCard().query.filter_by(id=id).first()
+    # TODO: Переписать условия проверки на питоне:
+    if query.ip != str(ip):
+        if current_user.is_authenticated:
+            if current_user.username == 'admin':
+                pass
+            else:
+                return abort(403)
+        elif current_user.is_anonymous:
+            return abort(403)
+
     db.session.delete(query)
     db.session.commit()
     return redirect(url_for('defectura.defectura'))

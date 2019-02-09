@@ -42,7 +42,7 @@ def SOP(SOP_id):
 @login_required
 def edit_SOP(SOP_id):
     edit_SOP_id = SOPPost.query.filter_by(id=SOP_id).first()
-    form = SOPForm(title=edit_SOP_id.title, body=edit_SOP_id.body )
+    form = SOPForm(title=edit_SOP_id.title, body=edit_SOP_id.body)
     if form.validate_on_submit():
         edit_SOP_id.title = form.title.data
         edit_SOP_id.body = form.body.data

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+      crossorigin="anonymous">
+{% endblock %}
+
+{% block action_menu %}
+{% endblock %}
+
+{% block app_content %}
+    <div>
+        {{ wtf.quick_form(form) }}
+    </div>
+    <hr>
+    {% for date, list in defectura_cards | groupby('date') | reverse %}
+        <div class="card">
+            <div class="card-header">
+                {{ _('Defecture for') }} {{ date.strftime('%d/%m/%Y') }}
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <tr>
+                        <th>{{ _('Drug Name') }}</th>
+                        <th>{{ _('Comment') }}</th>
+                        <th>{{ _('Employee Name') }}</th>
+                    </tr>
+                    {% for item in list %}
+                    <tr>
+                        <td>{{ item.drug_name }}</td>
+                        <td>{{ item.comment }}</td>
+                        <td>{{ item.employee_name }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <br>
+    {% endfor %}
+{% endblock %}

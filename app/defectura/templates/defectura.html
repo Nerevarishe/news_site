@@ -61,11 +61,25 @@
                                    title="{{ _('Search in Google') }}">
                                     <i class="fab fa-google"></i>
                                 </a>
-                                <a href="{{ url_for('defectura.del_item', id=item.id) }}"
-                                   class="btn btn-outline-primary"
-                                   title="{{ _('Delete item') }}">
-                                    <i class="fas fa-trash-alt"></i>
-                                </a>
+                                {% if current_user.username == 'admin' or item.ip == request.environ.get('HTTP_X_REAL_IP', request.remote_addr) %}
+                                    <a href="{{ url_for('defectura.edit_item', id=item.id) }}"
+                                       class="btn btn-outline-primary"
+                                       title="{{ _('Edit item') }}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="{{ url_for('defectura.del_item', id=item.id) }}"
+                                       class="btn btn-outline-primary"
+                                       title="{{ _('Delete item') }}">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                {% endif %}
+                                {% if current_user.username == 'admin' %}
+                                    <a href="{# url_for('defectura.to_zd', id=item.id) }} #}"
+                                       class="btn btn-outline-primary"
+                                       title="{{ _('To ZD') }}">
+                                        <i class="fas fa-calendar-times"></i>
+                                    </a>
+                                {% endif %}
                             </span>
                         </td>
                     </tr>
