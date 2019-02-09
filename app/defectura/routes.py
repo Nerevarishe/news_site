@@ -22,8 +22,10 @@ def defectura():
                                    ip=ip)
         db.session.add(add_string)
         db.session.commit()
-    defectura_cards = DefecturaCard().query.order_by(DefecturaCard.date).all()
-    return render_template('defectura.html', title=_('Defectura'), form=form, defectura_cards=defectura_cards)
+    defectura_cards = DefecturaCard().query.filter_by(in_zd=False).order_by(DefecturaCard.date).all()
+    defectura_cards_in_zd = DefecturaCard().query.filter_by(in_zd=True).order_by(DefecturaCard.date).all()
+    return render_template('defectura.html', title=_('Defectura'), form=form, defectura_cards=defectura_cards,
+                           defectura_cards_in_zd=defectura_cards_in_zd)
 
 
 @bp.route('edit_item/<id>', methods=['GET', 'POST'])
@@ -36,9 +38,9 @@ def edit_item(id):
             if current_user.username == 'admin':
                 pass
             else:
-                return abort(403)
+                return abort(401)
         elif current_user.is_anonymous:
-            return abort(403)
+            return abort(401)
 
     form = DefecturaForm(drug_name=query.drug_name,
                          comment=query.comment,
@@ -67,9 +69,9 @@ def del_item(id):
             if current_user.username == 'admin':
                 pass
             else:
-                return abort(403)
+                return abort(401)
         elif current_user.is_anonymous:
-            return abort(403)
+            return abort(401)
 
     db.session.delete(query)
     db.session.commit()
@@ -84,4 +86,22 @@ def delete_card(date):
         q = DefecturaCard().query.filter_by(id=item.id).first()
         db.session.delete(q)
         db.session.commit()
+    return redirect(url_for('defectura.defectura'))
+
+
+@bp.route('/add_to_zd/<id>')
+@login_required
+def add_to_zd(id):
+    selected_card = DefecturaCard.query.filter_by(id=id).first()
+    selected_card.in_zd = True
+    db.session.commit()
+    return redirect(url_for('defectura.defectura'))
+
+
+@bp.route('/remove_from_zd/<id>')
+@login_required
+def remove_from_zd(id):
+    selected_card = DefecturaCard.query.filter_by(id=id).first()
+    selected_card.in_zd = False
+    db.session.commit()
     return redirect(url_for('defectura.defectura'))

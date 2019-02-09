@@ -24,6 +24,45 @@
 
 {% block app_content %}
     <div>
+        {% for date, list in defectura_cards_in_zd | groupby('date') | reverse %}
+            <div>
+                <h3>Заводская дефектура.</h3>
+                <p>В таблице ниже приведена заводская дефектура.</p>
+            </div>
+            <table class="table">
+                <tr>
+                    <th>{{ _('Drug Name') }}</th>
+                    <th>{{ _('Comment') }}</th>
+                    {% if current_user.is_authenticated %}
+                        <th>{{ _('Options') }}</th>
+                    {% endif %}
+                </tr>
+                {% for item in list %}
+                    <tr>
+                        <td>{{ item.drug_name }}</td>
+                        <td>{{ item.comment }}</td>
+                        <td>
+                            {% if current_user.is_authenticated %}
+                                <a href="{{ url_for('defectura.remove_from_zd', id=item.id) }}"
+                                   class="btn btn-outline-primary"
+                                   title="{{ _('Delete from ZD') }}">
+                                    <i class="fas fa-calendar-check"></i>
+                                </a>
+                                <a href="{{ url_for('defectura.del_item', id=item.id) }}"
+                                   class="btn btn-outline-primary"
+                                   title="{{ _('Delete item') }}">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            {% endif %}
+
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <hr>
+        {% endfor %}
+    </div>
+    <div>
         {{ wtf.quick_form(form) }}
     </div>
     <hr>
@@ -74,9 +113,9 @@
                                     </a>
                                 {% endif %}
                                 {% if current_user.username == 'admin' %}
-                                    <a href="{# url_for('defectura.to_zd', id=item.id) }} #}"
+                                    <a href="{{ url_for('defectura.add_to_zd', id=item.id) }}"
                                        class="btn btn-outline-primary"
-                                       title="{{ _('To ZD') }}">
+                                       title="{{ _('Add to ZD') }}">
                                         <i class="fas fa-calendar-times"></i>
                                     </a>
                                 {% endif %}

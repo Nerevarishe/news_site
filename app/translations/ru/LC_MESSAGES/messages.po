@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-07 12:44+0300\n"
+"POT-Creation-Date: 2019-02-09 13:08+0300\n"
 "PO-Revision-Date: 2018-08-23 01:00+0300\n"
 "Last-Translator: \n"
 "Language: ru\n"
@@ -125,28 +125,30 @@ msgstr "Чат"
 msgid "Your message"
 msgstr "Ваше сообщение"
 
-#: app/defectura/forms.py:8 app/defectura/routes.py:26
-#: app/templates/base.html:38
+#: app/defectura/forms.py:8 app/defectura/routes.py:27
+#: app/defectura/routes.py:59 app/templates/base.html:38
 msgid "Defectura"
 msgstr "Дефектура"
 
-#: app/defectura/forms.py:9 app/defectura/templates/defectura.html:47
+#: app/defectura/forms.py:9 app/defectura/templates/defectura.html:35
+#: app/defectura/templates/defectura.html:86
+#: app/defectura/templates/defectura_edit.html:29
 msgid "Comment"
 msgstr "Комментарий"
 
-#: app/defectura/forms.py:10 app/defectura/templates/defectura.html:48
+#: app/defectura/forms.py:10 app/defectura/templates/defectura.html:87
+#: app/defectura/templates/defectura_edit.html:30
 msgid "Employee Name"
 msgstr "Имя сотрудника"
 
-#: app/defectura/templates/defectura.html:33
-msgid "Defecture for"
-msgstr "Дефектура за"
-
-#: app/defectura/templates/defectura.html:46
+#: app/defectura/templates/defectura.html:34
+#: app/defectura/templates/defectura.html:85
+#: app/defectura/templates/defectura_edit.html:28
 msgid "Drug Name"
 msgstr "Название лекарства"
 
-#: app/defectura/templates/defectura.html:49
+#: app/defectura/templates/defectura.html:37
+#: app/defectura/templates/defectura.html:88
 #: app/schedule/templates/employees.html:24
 #: app/spravka/templates/drugstores.html:50
 #: app/spravka/templates/service_centres.html:16
@@ -154,13 +156,31 @@ msgstr "Название лекарства"
 msgid "Options"
 msgstr "Опции"
 
-#: app/defectura/templates/defectura.html:61
+#: app/defectura/templates/defectura.html:48
+msgid "Delete from ZD"
+msgstr "Удалить из ЗД"
+
+#: app/defectura/templates/defectura.html:53
+#: app/defectura/templates/defectura.html:111
+msgid "Delete item"
+msgstr "Удалить позицию"
+
+#: app/defectura/templates/defectura.html:72
+#: app/defectura/templates/defectura_edit.html:23
+msgid "Defecture for"
+msgstr "Дефектура за"
+
+#: app/defectura/templates/defectura.html:100
 msgid "Search in Google"
 msgstr "Искать в Google"
 
-#: app/defectura/templates/defectura.html:66
-msgid "Delete item"
-msgstr "Удалить позицию"
+#: app/defectura/templates/defectura.html:106
+msgid "Edit item"
+msgstr "Редактировать позицию"
+
+#: app/defectura/templates/defectura.html:118
+msgid "Add to ZD"
+msgstr "Добавить в ЗД"
 
 #: app/edinfo/forms.py:10 app/faq/forms.py:10 app/faq/routes.py:13
 #: app/orders/forms.py:10 app/templates/base.html:29
@@ -175,13 +195,34 @@ msgstr "Учебная информация"
 msgid "Add article"
 msgstr "Добавить статью"
 
-#: app/errors/templates/404.html:4
-msgid "File Not Found"
-msgstr "Файл не найден"
+#: app/errors/templates/401.html:4
+msgid "Unauthorized"
+msgstr "Не авторизирован"
 
+#: app/errors/templates/401.html:5
+msgid ""
+"The server could not verify that you are authorized to access the URL "
+"requested. You either supplied\n"
+"             the wrong credentials (e.g. a bad password), or your browser"
+" doesn't understand how to supply\n"
+"             the credentials required."
+msgstr ""
+"Сервер не может подтвердить, что вы авторизованы для доступа к запрошенному URL. "
+"Вы либо указали неправильный учетные данные (например, неверный пароль), или ваш браузер не понимает,"
+"как предоставить необходимые учетные данные."
+
+#: app/errors/templates/401.html:8 app/errors/templates/403.html:5
 #: app/errors/templates/404.html:5 app/errors/templates/500.html:6
 msgid "Back"
 msgstr "Назад"
+
+#: app/errors/templates/403.html:4
+msgid "Access is denied."
+msgstr "Доступ запрещён."
+
+#: app/errors/templates/404.html:4
+msgid "File Not Found"
+msgstr "Файл не найден"
 
 #: app/errors/templates/500.html:4
 msgid "An unexpected error has occured"
@@ -265,11 +306,11 @@ msgstr "Приказы"
 msgid "Added new order"
 msgstr "Добавлен новый приказ:"
 
-#: app/orders/routes.py:41 app/orders/templates/orders.html:19
+#: app/orders/routes.py:42 app/orders/templates/orders.html:19
 msgid "Add law"
 msgstr "Добавить приказ"
 
-#: app/orders/routes.py:64
+#: app/orders/routes.py:69
 msgid "Order updated:"
 msgstr "Приказ обновлён:"
 
