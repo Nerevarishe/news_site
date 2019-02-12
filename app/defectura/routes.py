@@ -46,12 +46,9 @@ def edit_item(id):
                          comment=query.comment,
                          employee_name=query.employee_name)
     if form.validate_on_submit():
-        date = datetime.utcnow()
-        date = date.date()
         query.drug_name = form.drug_name.data
         query.comment = form.comment.data
         query.employee_name = form.employee_name.data
-        query.date = date
         query.ip = ip
         db.session.commit()
         return redirect(url_for('defectura.defectura'))
