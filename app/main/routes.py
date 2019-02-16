@@ -6,25 +6,26 @@ from flask_login import login_required
 from flask_babel import _, get_locale
 from flask_ckeditor import upload_fail, upload_success
 from app import app, db
-from app.forms import NewsForm
+from app.main import bp
+from app.main.forms import NewsForm
 from app.models import News
 
 
-@app.route('/', methods=['GET', 'POST'])
-@app.route('/index')
+@bp.route('/', methods=['GET', 'POST'])
+@bp.route('/index')
 def index():
     page = request.args.get('page', 1, type=int)
     news = News.query.order_by(News.timestamp.desc()).paginate(
         page, app.config['POSTS_PER_PAGE'], False)
-    next_url = url_for('index', page=news.next_num) \
+    next_url = url_for('main.index', page=news.next_num) \
         if news.has_next else None
-    prev_url = url_for('index', page=news.prev_num) \
+    prev_url = url_for('main.index', page=news.prev_num) \
         if news.has_prev else None
     return render_template('index.html', title=_('Home'), news=news.items,
-                            next_url=next_url, prev_url=prev_url)
+                           next_url=next_url, prev_url=prev_url)
 
 
-@app.route('/add_news', methods=['GET', 'POST'])
+@bp.route('/add_news', methods=['GET', 'POST'])
 @login_required
 def add_news():
     form = NewsForm()
@@ -32,20 +33,19 @@ def add_news():
         news = News(body=form.news.data)
         db.session.add(news)
         db.session.commit()
-        news_id = news.id
-        return redirect(url_for('index'))
+        return redirect(url_for('main.index'))
     return render_template('add_news.html', title=_('Add News'), form=form)
 
 
-@app.route('/files/<filename>')
+@bp.route('/files/<filename>')
 def uploaded_files(filename):
     path = app.config['UPLOADED_PATH']
     return send_from_directory(path, filename)
 
 
-@app.route('/upload', methods=['POST'])
+@bp.route('/upload', methods=['POST'])
 def upload():
-    f = request.files.get('upload')
+    f = request.files.get('main.upload')
     extension = f.filename.split('.')[1].lower()
     if extension not in ['jpg', 'gif', 'png', 'jpeg']:
         return upload_fail(message='Image only!')
@@ -54,16 +54,16 @@ def upload():
     return upload_success(url=url)
 
 
-@app.route('/del_news/<news_id>')
+@bp.route('/del_news/<news_id>')
 @login_required
 def del_news(news_id):
     delete_news_id = News.query.filter_by(id=news_id).first()
     db.session.delete(delete_news_id)
     db.session.commit()
-    return redirect(url_for('index'))
+    return redirect(url_for('main.index'))
 
 
-@app.route('/edit_news/<news_id>', methods=['GET', 'POST'])
+@bp.route('/edit_news/<news_id>', methods=['GET', 'POST'])
 @login_required
 def edit_news(news_id):
     edit_news_id = News.query.filter_by(id=news_id).first()
@@ -71,10 +71,10 @@ def edit_news(news_id):
     if form.validate_on_submit():
         edit_news_id.body = form.news.data
         db.session.commit()
-        return redirect(url_for('index'))
+        return redirect(url_for('main.index'))
     return render_template('add_news.html', form=form)
 
 
-@app.before_request
+@bp.before_request
 def before_request():
     g.locale = str(get_locale())

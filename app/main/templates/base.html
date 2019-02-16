@@ -14,7 +14,7 @@
 {% block navbar %}
     <nav class="navbar navbar-expand-sm bg-light navbar-light">
 {#        <a class="navbar-brand" href="{{ url_for('index') }}">{{ _('News Site') }}</a>#}
-        <a class="navbar-brand" href="{{ url_for('index') }}">
+        <a class="navbar-brand" href="{{ url_for('main.index') }}">
             <img src="/static/img/logo_vista.png" alt="logo" style="width: 120px;">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -23,7 +23,7 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('index') }}">{{ _('Home') }}</a>
+                    <a class="nav-link" href="{{ url_for('main.index') }}">{{ _('Home') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('faq.faq') }}">{{ _('FAQ') }}</a>

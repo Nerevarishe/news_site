@@ -1,6 +1,5 @@
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
-from flask_uploads import UploadSet, DOCUMENTS, configure_uploads
 
 
 class Config(object):
@@ -25,7 +24,7 @@ class Config(object):
     
     # CKEditor settings
     CKEDITOR_SERVE_LOCAL = True
-    CKEDITOR_FILE_UPLOADER = 'upload'
+    CKEDITOR_FILE_UPLOADER = 'main.upload'
     CKEDITOR_ALLOWEDCONTENT = True
     
     # Flask-Uploads

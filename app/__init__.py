@@ -33,6 +33,8 @@ configure_uploads(app, documents)
 # Flask-Admin Views
 from flask_admin.contrib.sqla import ModelView
 from app.models import *
+
+
 class AdminView(ModelView):
 
     def is_accessible(self):
@@ -64,6 +66,9 @@ admin.add_view(AdminView(DefecturaCard, db.session))
 # Blueprints of modules init
 from app.errors import bp as errors_bp
 app.register_blueprint(errors_bp)
+
+from app.main import bp as main_bp
+app.register_blueprint(main_bp, url_prefix='/')
 
 from app.auth import bp as auth_bp
 app.register_blueprint(auth_bp, url_prefix='/auth')
@@ -118,4 +123,4 @@ if not app.debug:
     app.logger.setLevel(logging.INFO)
     app.logger.info('News site startup')
 
-from app import routes, models
+from app import models
