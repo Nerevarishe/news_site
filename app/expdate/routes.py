@@ -3,8 +3,8 @@ from datetime import datetime
 from flask import render_template, redirect, request, url_for, json
 from flask_login import login_required
 from flask_babel import _
-from app import app, db
-from app import documents
+from app import db
+# from app import documents #TODO Test what this do
 from app.expdate.forms import ExpdateAddItemForm, UploadExpDateTable
 from app.models import ExpdateTable
 from app.expdate import bp

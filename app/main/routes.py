@@ -1,11 +1,11 @@
 import os
-from flask import render_template, redirect, url_for, send_from_directory
+from flask import render_template, redirect, url_for, send_from_directory, current_app
 from flask import g
 from flask import request
 from flask_login import login_required
 from flask_babel import _, get_locale
 from flask_ckeditor import upload_fail, upload_success
-from app import app, db
+from app import db
 from app.main import bp
 from app.main.forms import NewsForm
 from app.models import News
@@ -16,7 +16,7 @@ from app.models import News
 def index():
     page = request.args.get('page', 1, type=int)
     news = News.query.order_by(News.timestamp.desc()).paginate(
-        page, app.config['POSTS_PER_PAGE'], False)
+        page, current_app.config['POSTS_PER_PAGE'], False)
     next_url = url_for('main.index', page=news.next_num) \
         if news.has_next else None
     prev_url = url_for('main.index', page=news.prev_num) \
