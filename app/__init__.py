@@ -15,18 +15,17 @@ from logging.handlers import RotatingFileHandler
 import os
 
 
-# app = Flask(__name__)
-# app.config.from_object(Config)
 db = SQLAlchemy()
-# migrate = Migrate(app, db)
 migrate = Migrate()
 login = LoginManager()
 bootstrap = Bootstrap()
 moment = Moment()
 babel = Babel()
 ckeditor = CKEditor()
-# admin = Admin(app, name='News Site')
 admin = Admin()
+
+# Flask-Uploads settings
+documents = UploadSet('documents', DOCUMENTS)
 
 
 def create_app(config_class=Config):
@@ -43,7 +42,6 @@ def create_app(config_class=Config):
     admin.init_app(app)
 
     # Flask-Uploads settings
-    documents = UploadSet('documents', DOCUMENTS)
     configure_uploads(app, documents)
 
     # Flask-Admin Views
