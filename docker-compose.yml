@@ -3,6 +3,7 @@ services:
   web:
     image: vista/news_site:latest
     ports:
-      - "5001:5001"
+      - "5000:5000"
     volumes:
       - ${PWD}/app.db:/srv/www/news_site/app.db
+    restart: always
