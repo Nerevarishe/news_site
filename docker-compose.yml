@@ -8,4 +8,4 @@ services:
       - vista_portal:/srv/www/news_site/
     restart: always
 volumes:
-  - vista_portal:
+  vista_portal:
