@@ -5,5 +5,7 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - ${PWD}/app.db:/srv/www/news_site/app.db
+      - vista_portal:/srv/www/news_site/
     restart: always
+volumes:
+  - vista_portal:
