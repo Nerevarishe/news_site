@@ -13,7 +13,7 @@ RUN pip install --no-cache-dir -r requirements.txt \
 && apk del build-base git
 
 
-ENV FLASK_APP news_site
+ENV FLASK_APP vista_portal
 RUN flask db upgrade
 
-CMD gunicorn -w 4 -b 0.0.0.0:5000 news_site:app
+CMD gunicorn -w 4 -b 0.0.0.0:5000 vista_portal:app

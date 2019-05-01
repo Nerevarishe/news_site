@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   web:
-    image: vista/news_site:latest
+    image: nerevarishe/vista_portal:latest
     ports:
       - "127.0.0.1:5000:5000"
     volumes:
