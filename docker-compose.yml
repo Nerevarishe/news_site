@@ -5,7 +5,7 @@ services:
     ports:
       - "127.0.0.1:5000:5000"
     volumes:
-      - vista_portal:/srv/www/news_site/
+      - vista_portal:/srv/www/vista_portal/
     restart: always
 volumes:
   vista_portal:
