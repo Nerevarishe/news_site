@@ -78,7 +78,7 @@ def del_item(id):
 @bp.route('/delete_card/<date>')
 @login_required
 def delete_card(date):
-    select_cards = DefecturaCard().query.filter_by(date=date).all()
+    select_cards = DefecturaCard().query.filter_by(date=date, in_zd=False).all()
     for item in select_cards:
         q = DefecturaCard().query.filter_by(id=item.id).first()
         db.session.delete(q)
