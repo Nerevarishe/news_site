@@ -1,4 +1,7 @@
-#pyCharm
+# VS Code
+.vscode/
+
+# pyCharm
 .idea/
 
 # Logs dir
