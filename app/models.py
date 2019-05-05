@@ -182,8 +182,9 @@ class Shift(db.Model):
         '''.format(self.shift_name, self.comment, self.employees)
 
 
-class DeferredDrugs(db.Model):
+class DeferredDrug(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     drug_name = db.Column(db.String)
     drug_amount = db.Column(db.Integer)
     comment = db.Column(db.String)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
