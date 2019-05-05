@@ -7,7 +7,7 @@ class Config(object):
     
     # SQLAlchemy settings
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'sqlite:///' + os.path.join(basedir, 'app.db')
+        'sqlite:///' + os.path.join(basedir, 'sqlite_db/app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
         
     # Language settings
