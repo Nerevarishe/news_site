@@ -91,8 +91,8 @@ def create_app(config_class=Config):
     from app.orders import bp as orders_bp
     app.register_blueprint(orders_bp, url_prefix='/orders')
 
-    from app.expdate import bp as expdate_bp
-    app.register_blueprint(expdate_bp, url_prefix='/expdate')
+    #from app.expdate import bp as expdate_bp
+    #app.register_blueprint(expdate_bp, url_prefix='/expdate')
 
     from app.SOP import bp as SOP_bp
     app.register_blueprint(SOP_bp, url_prefix='/SOP')
