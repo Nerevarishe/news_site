@@ -112,6 +112,9 @@ def create_app(config_class=Config):
     from app.schedule import bp as schedule_bp
     app.register_blueprint(schedule_bp, url_prefix='/schedule')
 
+    from app.deferred import bp as deferred_bp
+    app.register_blueprint(deferred_bp, url_prefix='/deferred')
+
     if not app.debug:
         # E-mail configuration
 
