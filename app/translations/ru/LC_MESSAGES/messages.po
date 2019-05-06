@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-05-06 12:33+0300\n"
+"POT-Creation-Date: 2019-05-06 18:54+0300\n"
 "PO-Revision-Date: 2018-08-23 01:00+0300\n"
 "Last-Translator: \n"
 "Language: ru\n"
@@ -33,7 +33,7 @@ msgid "Add link on news page?"
 msgstr "Добавить ссылку на странице новостей?"
 
 #: app/SOP/forms.py:12 app/chat/forms.py:10 app/defectura/forms.py:11
-#: app/deferred/forms.py:11 app/edinfo/forms.py:11 app/expdate/forms.py:13
+#: app/deferred/forms.py:12 app/edinfo/forms.py:11 app/expdate/forms.py:13
 #: app/expdate/forms.py:17 app/faq/forms.py:11 app/main/forms.py:10
 #: app/orders/forms.py:12 app/schedule/forms.py:16 app/spravka/forms.py:13
 #: app/spravka/forms.py:20
@@ -121,7 +121,8 @@ msgstr "Дефектура"
 
 #: app/defectura/forms.py:9 app/defectura/templates/defectura.html:35
 #: app/defectura/templates/defectura.html:91
-#: app/defectura/templates/defectura_edit.html:29
+#: app/defectura/templates/defectura_edit.html:29 app/deferred/forms.py:11
+#: app/deferred/templates/deferred.html:30
 msgid "Comment"
 msgstr "Комментарий"
 
@@ -133,13 +134,13 @@ msgstr "Имя сотрудника"
 #: app/defectura/templates/defectura.html:34
 #: app/defectura/templates/defectura.html:90
 #: app/defectura/templates/defectura_edit.html:28 app/deferred/forms.py:9
-#: app/deferred/templates/deferred.html:18
+#: app/deferred/templates/deferred.html:28
 msgid "Drug Name"
 msgstr "Название лекарства"
 
 #: app/defectura/templates/defectura.html:37
 #: app/defectura/templates/defectura.html:93
-#: app/deferred/templates/deferred.html:21
+#: app/deferred/templates/deferred.html:32
 #: app/schedule/templates/employees.html:24
 #: app/spravka/templates/drugstores.html:50
 #: app/spravka/templates/service_centres.html:16
@@ -178,11 +179,11 @@ msgstr "Добавить в ЗД"
 msgid "Drug Amount"
 msgstr "Количество упаковок"
 
-#: app/deferred/routes.py:22 app/main/templates/base.html:56
+#: app/deferred/routes.py:23 app/main/templates/base.html:56
 msgid "Deferred Drugs"
 msgstr "\"Отложенные\" лекарства"
 
-#: app/deferred/templates/deferred.html:19 app/expdate/forms.py:12
+#: app/deferred/templates/deferred.html:29 app/expdate/forms.py:12
 #: app/expdate/templates/expdate.html:118
 msgid "Amount"
 msgstr "Количество"
@@ -486,3 +487,4 @@ msgstr "Адреса СЦ"
 #: app/spravka/templates/spravka.html:48
 msgid "Brands Name"
 msgstr "Брэнды"
+

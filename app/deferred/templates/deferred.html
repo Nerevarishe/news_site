@@ -5,6 +5,16 @@
 
 {% endblock %}
 
+{% block scripts %}
+    {{ super() }}
+    <script>
+        $( document ).ready(function() {
+            $( '#drug_name' ).val( '' ).focus();
+            $( '#comment' ).val( '' );
+        });
+    </script>
+{% endblock %}
+
 {% block app_content %}
     {% if current_user.is_authenticated %}
         <div class="row">
@@ -17,6 +27,7 @@
         <tr>
             <th>{{ _('Drug Name') }}</th>
             <th>{{ _('Amount') }}</th>
+            <th>{{ _('Comment') }}</th>
             {% if current_user.is_authenticated %}
                 <th>{{ _('Options') }}</th>
             {% endif %}
@@ -25,6 +36,7 @@
             <tr>
                 <td>{{ deferred_post.drug_name }}</td>
                 <td>{{ deferred_post.drug_amount }}</td>
+                <td>{{ deferred_post.comment }}</td>
                 {% if current_user.is_authenticated %}
                     <td>
                         <a href="{{ url_for('deferred.delete_drug', id=deferred_post.id) }}">
@@ -34,6 +46,5 @@
                 {% endif %}
             </tr>
         {% endfor %}
-
     </table>
 {% endblock %}

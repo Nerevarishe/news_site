@@ -10,11 +10,12 @@ from app.deferred import bp
 @bp.route('/', methods=['GET', 'POST'])
 def deferred():
     form = DeferredForm()
-    deferred_posts = DeferredDrug().query.order_by(DeferredDrug.drug_name.desc()).all()
+    deferred_posts = DeferredDrug().query.order_by(DeferredDrug.drug_name.asc()).all()
     if form.validate_on_submit():
         deferred_drug = DeferredDrug(
             drug_name = form.drug_name.data,
-            drug_amount = form.drug_amount.data
+            drug_amount = form.drug_amount.data,
+            comment = form.comment.data
         )
         db.session.add(deferred_drug)
         db.session.commit()
