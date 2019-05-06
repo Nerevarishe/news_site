@@ -19,7 +19,7 @@ def deferred():
         db.session.add(deferred_drug)
         db.session.commit()
         return redirect(url_for('deferred.deferred'))
-    return render_template('deferred.html', title=_('deferred'), deferred_posts=deferred_posts, form=form)
+    return render_template('deferred.html', title=_('Deferred Drugs'), deferred_posts=deferred_posts, form=form)
 
 
 @bp.route('/delete_drug/<id>', methods=['GET', 'POST'])
