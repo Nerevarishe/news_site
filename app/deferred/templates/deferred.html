@@ -6,5 +6,34 @@
 {% endblock %}
 
 {% block app_content %}
-    deferred module created!
+    {% if current_user.is_authenticated %}
+        <div class="row">
+            <div class="">
+                {{ wtf.quick_form(form) }}
+            </div>
+        </div>
+    {% endif %}
+    <table class="table">
+        <tr>
+            <th>{{ _('Drug Name') }}</th>
+            <th>{{ _('Amount') }}</th>
+            {% if current_user.is_authenticated %}
+                <th>{{ _('Options') }}</th>
+            {% endif %}
+        </tr>
+        {% for deferred_post in deferred_posts %}
+            <tr>
+                <td>{{ deferred_post.drug_name }}</td>
+                <td>{{ deferred_post.drug_amount }}</td>
+                {% if current_user.is_authenticated %}
+                    <td>
+                        <a href="{{ url_for('deferred.delete_drug', id=deferred_post.id) }}">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+
+    </table>
 {% endblock %}

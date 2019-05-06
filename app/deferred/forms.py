@@ -6,6 +6,6 @@ from flask_babel import lazy_gettext as _l
 
     
 class DeferredForm(FlaskForm):
-    title = StringField(_l('Title'), validators=[DataRequired()])
-    body = CKEditorField(_l('FAQ'), validators=[DataRequired()])
+    drug_name = StringField(_l('Drug Name'), validators=[DataRequired()])
+    drug_amount = StringField(_l('Drug Amount'), validators=[DataRequired()])
     submit = SubmitField(_l('Submit'))
