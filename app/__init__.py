@@ -74,6 +74,7 @@ def create_app(config_class=Config):
     admin.add_view(AdminView(SOPPost, db.session))
     admin.add_view(AdminView(EdinfoPost, db.session))
     admin.add_view(AdminView(DefecturaCard, db.session))
+    admin.add_view(AdminView(DeferredDrug, db.session))
 
     # Blueprints of modules init
     from app.errors import bp as errors_bp
