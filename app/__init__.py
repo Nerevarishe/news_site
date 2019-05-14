@@ -46,7 +46,7 @@ def create_app(config_class=Config):
 
     # Flask-Admin Views
     from flask_admin.contrib.sqla import ModelView
-    from app.models import User, News, FaqPost,LawPost,ExpdateTable, SOPPost,EdinfoPost, DefecturaCard
+    from app.models import User, News, FaqPost,LawPost,ExpdateTable, SOPPost,EdinfoPost, DefecturaCard, DeferredDrug
 
     class AdminView(ModelView):
 
