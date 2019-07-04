@@ -28,8 +28,8 @@
         socket.on( 'my response', function( msg ) {
             console.log( msg )
             if( typeof msg.user_name !== 'undefined' ) {
-                var esc_name = msg.user_name.html();
-                var esc_message = msg.message.html();
+                var esc_name = msg.user_name;
+                var esc_message = msg.message;
                 $( 'div#chat_body' ).append( '<div><b style="color: #000">'+esc_name+'</b> '+esc_message+'</div>' )
             }
         })
