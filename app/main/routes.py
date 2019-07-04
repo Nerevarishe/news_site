@@ -1,19 +1,30 @@
 import os
-from flask import render_template, redirect, url_for, send_from_directory, current_app
-from flask import g
+from flask import render_template, redirect, url_for, send_from_directory, current_app, request
+from flask import g, flash, abort
 from flask import request
-from flask_login import login_required
+from flask_login import login_required, current_user, login_user, logout_user
 from flask_babel import _, get_locale
 from flask_ckeditor import upload_fail, upload_success
 from app import db
 from app.main import bp
 from app.main.forms import NewsForm
-from app.models import News
+from app.models import User, News
 
 
 @bp.route('/', methods=['GET', 'POST'])
 @bp.route('/index')
 def index():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.news'))
+    user = User.query.filter_by(username=request.environ.get('HTTP_X_REAL_IP', request.remote_addr)).first()
+    if user is None:
+        abort(403)
+    login_user(user, remember=True)
+    return url_for('main.news')
+
+
+@bp.route('news', methods=['GET', 'POST'])
+def news():
     page = request.args.get('page', 1, type=int)
     news = News.query.order_by(News.timestamp.desc()).paginate(
         page, current_app.config['POSTS_PER_PAGE'], False)
