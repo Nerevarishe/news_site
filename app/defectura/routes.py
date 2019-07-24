@@ -23,7 +23,7 @@ def defectura():
         db.session.add(add_string)
         db.session.commit()
     defectura_cards = DefecturaCard().query.filter_by(in_zd=False).order_by(DefecturaCard.date).all()
-    defectura_cards_in_zd = DefecturaCard().query.filter_by(in_zd=True).order_by(DefecturaCard.date).all()
+    defectura_cards_in_zd = DefecturaCard().query.filter_by(in_zd=True).order_by(DefecturaCard.drug_name).all()
     return render_template('defectura.html', title=_('Defectura'), form=form, defectura_cards=defectura_cards,
                            defectura_cards_in_zd=defectura_cards_in_zd)
 
