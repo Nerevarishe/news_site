@@ -1,5 +1,10 @@
 {% extends 'bootstrap/base.html' %}
 
+{% block head %}
+{{super()}}
+<link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon-92x92.png') }}">
+{% endblock %}
+
 {% block title %}
     {% if title %}{{ title }} - {{ _('News Site') }}{% else %}{{ _('Welcome to News Site') }}{% endif %}
 {% endblock %}
